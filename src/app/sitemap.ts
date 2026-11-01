@@ -1,4 +1,5 @@
 import type { MetadataRoute } from "next";
+import { obtenerFuncionarios, obtenerSedes } from "@/lib/api/contenido";
 import { siteConfig } from "@/lib/constants/site";
 
 const rutasPublicas = [
@@ -37,10 +38,21 @@ const rutasPublicas = [
   "/mapa-del-sitio",
 ];
 
-export default function sitemap(): MetadataRoute.Sitemap {
+export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const ahora = new Date();
+  const [sedes, funcionarios] = await Promise.all([
+    obtenerSedes(),
+    obtenerFuncionarios(),
+  ]);
 
-  return rutasPublicas.map((ruta) => ({
+  const rutasDinamicas = [
+    ...sedes.map((sede) => `/institucional/sedes/${sede.slug}`),
+    ...funcionarios.map(
+      (funcionario) => `/institucional/directorio-funcionarios/${funcionario.slug}`,
+    ),
+  ];
+
+  return [...rutasPublicas, ...rutasDinamicas].map((ruta) => ({
     url: `${siteConfig.url}${ruta}`,
     lastModified: ahora,
     changeFrequency: ruta === "" || ruta === "/noticias" ? "daily" : "weekly",

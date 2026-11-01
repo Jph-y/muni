@@ -1,4 +1,10 @@
-import type { CategoriaNoticia, CategoriaTramite, TipoNorma } from "@/lib/api/types";
+import type {
+  CategoriaNoticia,
+  CategoriaTramite,
+  NivelOrganizacional,
+  TipoDocumentoGestion,
+  TipoNorma,
+} from "@/lib/api/types";
 
 export const etiquetasCategoriaNoticia: Record<CategoriaNoticia, string> = {
   seguridad: "Seguridad",
@@ -23,4 +29,31 @@ export const etiquetasCategoriaTramite: Record<CategoriaTramite, string> = {
   certificados: "Certificados",
   "desarrollo-urbano": "Desarrollo urbano",
   "servicios-sociales": "Servicios sociales",
+};
+
+export const etiquetasNivelOrganizacional: Record<NivelOrganizacional, string> = {
+  "alta-direccion": "Alta dirección",
+  "organo-asesor": "Órganos de asesoría",
+  gerencia: "Gerencias",
+  subgerencia: "Subgerencias",
+};
+
+export const etiquetasTipoDocumentoGestion: Record<TipoDocumentoGestion, string> = {
+  rof: "ROF",
+  mof: "MOF",
+  pei: "PEI",
+  poi: "POI",
+  cap: "CAP",
+  pap: "PAP",
+  manual: "Manual",
+};
+
+export const descripcionesTipoDocumentoGestion: Record<TipoDocumentoGestion, string> = {
+  rof: "Reglamento de Organización y Funciones",
+  mof: "Manual de Organización y Funciones",
+  pei: "Plan Estratégico Institucional",
+  poi: "Plan Operativo Institucional",
+  cap: "Cuadro de Asignación de Personal",
+  pap: "Presupuesto Analítico de Personal",
+  manual: "Manual de procedimientos",
 };

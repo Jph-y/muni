@@ -56,13 +56,15 @@ src/
   app/            # rutas (App Router), metadata, sitemap y robots
   components/
     ui/           # componentes shadcn/ui
-    layout/       # header, footer, navegación, contenedor
+    layout/       # header, footer, navegación, migas de pan
     home/         # secciones de la portada
+    institucional/ # directorio, organigrama, sedes y documentos
     shared/       # componentes reutilizables
   lib/
     api/          # cliente HTTP, tipos y acceso a contenido
     constants/    # configuración del sitio, navegación y etiquetas
     format/       # moneda PEN, fechas es-PE y validaciones
+    institucional/ # filtros y utilidades del módulo institucional
     seo/          # metadata y JSON-LD
   mocks/          # datos simulados y handlers MSW
   proxy.ts        # protección de rutas privadas
@@ -72,7 +74,9 @@ tests/
 
 ## Estado
 
-Fases 0 y 1 completadas: setup técnico, sistema de diseño, layout institucional,
-home con datos simulados, páginas de sistema y suite inicial de pruebas.
+Fases 0, 1 y 2 completadas: setup técnico, sistema de diseño, layout institucional,
+home con datos simulados, páginas de sistema y el módulo institucional completo
+(organización, organigrama, autoridades, directorio de funcionarios, sedes y
+documentos de gestión) con datos públicos de gob.pe.
 El detalle del avance y las siguientes fases está en
 [`docs/PLAN-FRONTEND.md`](docs/PLAN-FRONTEND.md).

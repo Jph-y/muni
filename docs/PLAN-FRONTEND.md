@@ -644,21 +644,65 @@ Vitest + Testing Library + jsdom, Playwright + axe-core.
   `NEXT_PUBLIC_USE_MOCKS`; seeds en `src/mocks/data`.
 - Pruebas: 12 unitarias de formato/validación y 2 E2E de control de acceso (CP-06).
 
+### Fase 2 — Contenido institucional (completada)
+
+**Rutas implementadas (9):**
+
+| Ruta                                            | Contenido                                                                     |
+| ----------------------------------------------- | ----------------------------------------------------------------------------- |
+| `/institucional`                                | Misión, visión, funciones, datos de la entidad y accesos a subsecciones       |
+| `/institucional/organizacion`                   | Áreas agrupadas por nivel (alta dirección, asesoría, gerencias, subgerencias) |
+| `/institucional/organigrama`                    | Estructura orgánica accesible + descarga del organigrama oficial              |
+| `/institucional/autoridades`                    | Alcalde y 13 regidores del período 2023 - 2026                                |
+| `/institucional/directorio-funcionarios`        | Directorio con búsqueda por texto y filtro por área                           |
+| `/institucional/directorio-funcionarios/[slug]` | Ficha con contacto, dependencia, horario y funciones del área                 |
+| `/institucional/sedes`                          | Listado de 6 sedes + mapa de la sede principal                                |
+| `/institucional/sedes/[slug]`                   | Detalle de sede con servicios, mapa y recomendaciones                         |
+| `/institucional/documentos-de-gestion`          | ROF, MOF, PEI, POI, CAP, PAP y manuales filtrables con descarga               |
+
+**Datos:** se reemplazaron los seeds genéricos por información pública del portal
+gob.pe de la MDLO (autoridades, funcionarios, sedes y organigrama). Las fotografías
+se sustituyen por avatares con iniciales para no depender de recursos externos.
+
+**Componentes nuevos:**
+
+- `components/layout/breadcrumbs.tsx` — migas de pan accesibles.
+- `components/shared/page-hero.tsx` — cabecera de página con migas y descripción.
+- `components/shared/avatar-iniciales.tsx` — avatar con iniciales del nombre.
+- `components/shared/empty-state.tsx` — estado vacío reutilizable.
+- `components/institucional/directorio-funcionarios.tsx` — filtros en cliente.
+- `components/institucional/documentos-gestion.tsx` — pestañas y descargas.
+- `components/institucional/organigrama.tsx` — estructura por niveles.
+- `components/institucional/sede-card.tsx` y `mapa-sede.tsx`.
+
+**Lógica pura:** `src/lib/institucional/filtros.ts` (normalización de texto, iniciales,
+filtros de funcionarios/documentos y agrupación por nivel).
+
+**Datos y API:** nuevos tipos `Autoridad`, `AreaOrganizacional` y `DocumentoGestion`;
+endpoints mock para autoridades, organización, documentos y detalle por slug.
+
+**Documentos:** 7 PDF de demostración en `public/documents` para que las descargas
+funcionen de extremo a extremo. El contenido indica que son referenciales.
+
+**Pruebas:** 19 unitarias nuevas (filtros, iniciales, agrupación) y 4 de integración
+contra los handlers MSW (listados, detalle y 404).
+
 ### Verificación ejecutada
 
 | Comando                      | Resultado                                                   |
 | ---------------------------- | ----------------------------------------------------------- |
 | `pnpm typecheck`             | Sin errores                                                 |
 | `pnpm lint`                  | Sin errores                                                 |
-| `pnpm test`                  | 12/12 pruebas aprobadas                                     |
-| `pnpm build`                 | Build de producción correcto (home estática prerenderizada) |
+| `pnpm test`                  | 31/31 pruebas aprobadas                                     |
+| `pnpm build`                 | Build correcto con 33 páginas prerenderizadas               |
 | `pnpm start` + request a `/` | HTTP 200 con todas las secciones                            |
 | Request a `/mi-cuenta`       | HTTP 307 → `/login?redirect=/mi-cuenta`                     |
+| Smoke test de 9 rutas nuevas | HTTP 200 en todas; PDF y `sitemap.xml` sirven correctamente |
 
 ### Siguiente fase
 
-Fase 2 — contenido institucional (`/institucional`, sedes, funcionarios, organigrama,
-contacto y emergencias) reutilizando los componentes base ya creados.
+Fase 3 — trámites y servicios: catálogo `/tramites`, detalle con requisitos y costos,
+TUPA filtrable, `/servicios` y categorías; además de contacto, emergencias y FAQ.
 
 ---
 

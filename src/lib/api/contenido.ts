@@ -1,6 +1,9 @@
 import { apiFetch, USAR_MOCKS } from "@/lib/api/client";
 import type {
+  AreaOrganizacional,
+  Autoridad,
   Campana,
+  DocumentoGestion,
   Funcionario,
   Norma,
   Noticia,
@@ -10,6 +13,9 @@ import type {
 } from "@/lib/api/types";
 import { campanas as campanasMock } from "@/mocks/data/campanas";
 import {
+  areasOrganizacionales as areasMock,
+  autoridades as autoridadesMock,
+  documentosGestion as documentosMock,
   funcionarios as funcionariosMock,
   sedes as sedesMock,
 } from "@/mocks/data/institucional";
@@ -65,8 +71,48 @@ export async function obtenerSedes(): Promise<Sede[]> {
   return USAR_MOCKS ? sedesMock : apiFetch<Sede[]>("/contenido/sedes");
 }
 
+export async function obtenerSedePorSlug(slug: string): Promise<Sede | null> {
+  if (USAR_MOCKS) {
+    return sedesMock.find((sede) => sede.slug === slug) ?? null;
+  }
+
+  return apiFetch<Sede | null>(`/contenido/sedes/${slug}`);
+}
+
 export async function obtenerFuncionarios(): Promise<Funcionario[]> {
   return USAR_MOCKS
     ? funcionariosMock
     : apiFetch<Funcionario[]>("/contenido/funcionarios");
+}
+
+export async function obtenerFuncionarioPorSlug(
+  slug: string,
+): Promise<Funcionario | null> {
+  if (USAR_MOCKS) {
+    return funcionariosMock.find((funcionario) => funcionario.slug === slug) ?? null;
+  }
+
+  return apiFetch<Funcionario | null>(`/contenido/funcionarios/${slug}`);
+}
+
+export async function obtenerAutoridades(): Promise<Autoridad[]> {
+  const autoridades = USAR_MOCKS
+    ? autoridadesMock
+    : await apiFetch<Autoridad[]>("/contenido/autoridades");
+
+  return [...autoridades].sort((a, b) => a.orden - b.orden);
+}
+
+export async function obtenerAreasOrganizacionales(): Promise<AreaOrganizacional[]> {
+  return USAR_MOCKS
+    ? areasMock
+    : apiFetch<AreaOrganizacional[]>("/contenido/organizacion");
+}
+
+export async function obtenerDocumentosGestion(): Promise<DocumentoGestion[]> {
+  const documentos = USAR_MOCKS
+    ? documentosMock
+    : await apiFetch<DocumentoGestion[]>("/contenido/documentos-de-gestion");
+
+  return [...documentos].sort((a, b) => b.anio - a.anio);
 }
