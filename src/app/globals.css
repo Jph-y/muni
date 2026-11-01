@@ -1,0 +1,190 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+@import "shadcn/tailwind.css";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-inter);
+  --font-mono: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  --font-heading: var(--font-inter);
+
+  --color-brand: var(--brand);
+  --color-brand-dark: var(--brand-dark);
+  --color-brand-strong: var(--brand-strong);
+  --color-brand-soft: var(--brand-soft);
+  --color-gold: var(--gold);
+  --color-gold-soft: var(--gold-soft);
+
+  --color-ring: var(--ring);
+  --color-input: var(--input);
+  --color-border: var(--border);
+  --color-destructive: var(--destructive);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-accent: var(--accent);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-muted: var(--muted);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-secondary: var(--secondary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-primary: var(--primary);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-popover: var(--popover);
+  --color-card-foreground: var(--card-foreground);
+  --color-card: var(--card);
+
+  --color-chart-5: var(--chart-5);
+  --color-chart-4: var(--chart-4);
+  --color-chart-3: var(--chart-3);
+  --color-chart-2: var(--chart-2);
+  --color-chart-1: var(--chart-1);
+
+  --radius-sm: calc(var(--radius) * 0.6);
+  --radius-md: calc(var(--radius) * 0.8);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) * 1.4);
+  --radius-2xl: calc(var(--radius) * 1.8);
+  --radius-3xl: calc(var(--radius) * 2.2);
+  --radius-4xl: calc(var(--radius) * 2.6);
+}
+
+:root {
+  --background: #ffffff;
+  --foreground: #1a1c19;
+
+  --card: #ffffff;
+  --card-foreground: #1a1c19;
+  --popover: #ffffff;
+  --popover-foreground: #1a1c19;
+
+  --brand: #4b7f52;
+  --brand-dark: #1f3d24;
+  --brand-strong: #2e5a35;
+  --brand-soft: #eef4ee;
+  --gold: #c9a227;
+  --gold-soft: #f8f1d8;
+
+  --primary: #4b7f52;
+  --primary-foreground: #ffffff;
+  --secondary: #eef2ec;
+  --secondary-foreground: #1f3d24;
+  --muted: #f4f6f2;
+  --muted-foreground: #5a6157;
+  --accent: #eef2ec;
+  --accent-foreground: #1f3d24;
+  --destructive: #b3261e;
+  --border: #e1e5de;
+  --input: #d8ded4;
+  --ring: #4b7f52;
+
+  --chart-1: #4b7f52;
+  --chart-2: #7aa87f;
+  --chart-3: #c9a227;
+  --chart-4: #2e5a35;
+  --chart-5: #a9c4ac;
+
+  --radius: 0.75rem;
+}
+
+.dark {
+  --background: #12150f;
+  --foreground: #eef2ec;
+
+  --card: #1a1e17;
+  --card-foreground: #eef2ec;
+  --popover: #1a1e17;
+  --popover-foreground: #eef2ec;
+
+  --brand: #7aa87f;
+  --brand-dark: #0f1a11;
+  --brand-strong: #a9c4ac;
+  --brand-soft: #1f2a20;
+  --gold: #e0c05a;
+  --gold-soft: #2a2410;
+
+  --primary: #7aa87f;
+  --primary-foreground: #0f1a11;
+  --secondary: #232a21;
+  --secondary-foreground: #eef2ec;
+  --muted: #232a21;
+  --muted-foreground: #b3bdb0;
+  --accent: #232a21;
+  --accent-foreground: #eef2ec;
+  --destructive: #f26a60;
+  --border: #2c342a;
+  --input: #394236;
+  --ring: #7aa87f;
+
+  --chart-1: #7aa87f;
+  --chart-2: #a9c4ac;
+  --chart-3: #e0c05a;
+  --chart-4: #4b7f52;
+  --chart-5: #5c6b58;
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+
+  html {
+    @apply font-sans;
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+  }
+
+  body {
+    @apply bg-background text-foreground antialiased;
+    font-size: 1.0625rem;
+    line-height: 1.65;
+    text-rendering: optimizeLegibility;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    @apply font-heading text-balance;
+    line-height: 1.2;
+    letter-spacing: -0.015em;
+  }
+
+  p {
+    @apply text-pretty;
+  }
+
+  ::selection {
+    background-color: var(--brand-soft);
+    color: var(--brand-dark);
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--ring);
+    outline-offset: 2px;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
+}
+
+@utility container-page {
+  @apply mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8;
+}
+
+@utility text-shadow-hero {
+  text-shadow: 0 2px 24px rgb(0 0 0 / 0.35);
+}
