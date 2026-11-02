@@ -8,6 +8,7 @@ import type {
   TipoDocumentoGestion,
   TipoNorma,
   TipoPuntoEmergencia,
+  TipoPublicacion,
 } from "@/lib/api/types";
 
 export const etiquetasCategoriaNoticia: Record<CategoriaNoticia, string> = {
@@ -24,6 +25,31 @@ export const etiquetasTipoNorma: Record<TipoNorma, string> = {
   "decreto-de-alcaldia": "Decreto de alcaldía",
   "acuerdo-de-concejo": "Acuerdo de concejo",
   resolucion: "Resolución",
+};
+
+export const descripcionesTipoNorma: Record<TipoNorma, string> = {
+  ordenanza:
+    "Normas de alcance distrital aprobadas por el Concejo Municipal y publicadas para conocimiento de la ciudadanía.",
+  "decreto-de-alcaldia":
+    "Disposiciones emitidas por la alcaldía para reglamentar ordenanzas o atender situaciones administrativas.",
+  "acuerdo-de-concejo":
+    "Decisiones del Concejo Municipal sobre asuntos de interés institucional y distrital.",
+  resolucion:
+    "Actos administrativos que resuelven situaciones concretas de la gestión municipal.",
+};
+
+export const etiquetasTipoPublicacion: Record<TipoPublicacion, string> = {
+  formato: "Formato",
+  formulario: "Formulario",
+  informe: "Informe",
+};
+
+export const descripcionesTipoPublicacion: Record<TipoPublicacion, string> = {
+  formato:
+    "Documentos descargables que la municipalidad solicita para iniciar un trámite.",
+  formulario:
+    "Fichas de registro e inscripción para programas y actividades municipales.",
+  informe: "Resultados, avances y rendición de cuentas de la gestión municipal.",
 };
 
 export const etiquetasCategoriaTramite: Record<CategoriaTramite, string> = {

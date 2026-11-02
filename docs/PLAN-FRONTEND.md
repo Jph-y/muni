@@ -725,22 +725,58 @@ de partes, y declaración jurada), todos validados con estructura PDF correcta.
 **Pruebas:** 21 unitarias nuevas (filtros de trámites, servicios y FAQ) y 6 de
 integración contra MSW (catálogo, detalle, 404, servicios, FAQ y emergencias).
 
+### Fase 4 — Normas y documentos (completada)
+
+**Rutas implementadas (6):**
+
+| Ruta                                  | Contenido                                                               |
+| ------------------------------------- | ----------------------------------------------------------------------- |
+| `/normas`                             | Normas legales con búsqueda y filtros por tipo y año, agrupadas por año |
+| `/normas/[slug]`                      | Detalle con visor PDF integrado, datos de la norma y descarga           |
+| `/normas/tipo/[slug]`                 | Ordenanzas, decretos de alcaldía, acuerdos de concejo y resoluciones    |
+| `/informes-publicaciones`             | Formatos, formularios e informes con búsqueda y filtros                 |
+| `/informes-publicaciones/[slug]`      | Detalle con visor PDF, oficina responsable y descarga                   |
+| `/informes-publicaciones/tipo/[slug]` | Publicaciones por tipo (formato, formulario, informe)                   |
+
+**Datos:** `Norma` ahora exige `archivoUrl`; se agregaron `TipoPublicacion` y
+`Publicacion`. Los seeds incluyen 27 normas (2023–2026) y 10 publicaciones, con
+37 PDF de demostración generados en `public/documents/normas` y
+`public/documents/publicaciones`.
+
+**Componentes nuevos:**
+
+- `components/normas/norma-card.tsx`, `catalogo-normas.tsx` (búsqueda + tipo + año,
+  resultados agrupados por año) y `visor-pdf.tsx` (iframe accesible con acciones).
+- `components/publicaciones/publicacion-card.tsx` y `catalogo-publicaciones.tsx`.
+
+**Lógica pura:** `src/lib/normas/filtros.ts` y `src/lib/publicaciones/filtros.ts`
+(filtros combinados, conteo por tipo, años disponibles y agrupación por año).
+
+**Pruebas:** 16 unitarias nuevas (filtros de normas y publicaciones, años, conteos y
+verificación de que cada `archivoUrl` existe y es un PDF válido) y 5 de integración
+contra MSW (listados, detalle y 404).
+
+**Nota técnica:** con `cacheComponents` (PPR) los slugs inválidos de tipo o detalle
+renderizan la UI de «no encontrado» con `noindex`, pero la respuesta HTTP es 200
+(soft 404). No es posible usar `dynamicParams = false` porque es incompatible con
+`cacheComponents`. Los enlaces del sitemap solo incluyen rutas válidas.
+
 ### Verificación ejecutada
 
 | Comando                       | Resultado                                                    |
 | ----------------------------- | ------------------------------------------------------------ |
 | `pnpm typecheck`              | Sin errores                                                  |
 | `pnpm lint`                   | Sin errores                                                  |
-| `pnpm test`                   | 52/52 pruebas aprobadas                                      |
-| `pnpm build`                  | Build correcto con 81 páginas prerenderizadas                |
+| `pnpm test`                   | 74/74 pruebas aprobadas                                      |
+| `pnpm build`                  | Build correcto con 131 páginas prerenderizadas               |
 | `pnpm start` + request a `/`  | HTTP 200 con todas las secciones                             |
 | Request a `/mi-cuenta`        | HTTP 307 → `/login?redirect=/mi-cuenta`                      |
-| Smoke test de 18 rutas nuevas | HTTP 200 en todas; PDFs y `sitemap.xml` sirven correctamente |
+| Smoke test de 24 rutas nuevas | HTTP 200 en todas; PDFs y `sitemap.xml` sirven correctamente |
 
 ### Siguiente fase
 
-Fase 4 — normas y documentos: `/normas` con filtros por tipo y año, detalle con visor
-PDF, `/normas/tipo/[slug]`, `/informes-publicaciones` y sus variantes.
+Fase 5 — noticias y campañas: `/noticias` con destacados y paginación, detalle con
+galería y relacionadas, `/noticias/categoria/[slug]`, `/campanas` y su detalle.
 
 ---
 

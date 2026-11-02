@@ -2,6 +2,204 @@ import type { Norma } from "@/lib/api/types";
 
 export const normas: Norma[] = [
   {
+    id: "4801201",
+    slug: "resolucion-de-alcaldia-245-2026-mdlo",
+    tipo: "resolucion",
+    numero: "245-2026-MDLO",
+    titulo: "Resolución de Alcaldía N.° 245-2026-MDLO",
+    resumen:
+      "Designar al Gerente de Administración y Finanzas de la Municipalidad Distrital de Los Olivos.",
+    fecha: "2026-02-03",
+    archivoUrl: "/documents/normas/resolucion-de-alcaldia-245-2026-mdlo.pdf",
+  },
+  {
+    id: "4798420",
+    slug: "decreto-de-alcaldia-012-2026-mdlo",
+    tipo: "decreto-de-alcaldia",
+    numero: "012-2026-MDLO",
+    titulo: "Decreto de Alcaldía N.° 012-2026-MDLO",
+    resumen:
+      "Prorrogar la vigencia de los beneficios tributarios aprobados por la Ordenanza N.° 645-2024-MDLO para el ejercicio 2026.",
+    fecha: "2026-01-15",
+    archivoUrl: "/documents/normas/decreto-de-alcaldia-012-2026-mdlo.pdf",
+  },
+  {
+    id: "4786305",
+    slug: "ordenanza-682-2025-mdlo-tupa",
+    tipo: "ordenanza",
+    numero: "682-2025-MDLO",
+    titulo: "Ordenanza N.° 682-2025-MDLO",
+    resumen:
+      "Aprobar el Texto Único de Procedimientos Administrativos (TUPA) de la Municipalidad Distrital de Los Olivos.",
+    fecha: "2025-12-18",
+    archivoUrl: "/documents/normas/ordenanza-682-2025-mdlo-tupa.pdf",
+  },
+  {
+    id: "4779011",
+    slug: "resolucion-de-alcaldia-198-2025-mdlo",
+    tipo: "resolucion",
+    numero: "198-2025-MDLO",
+    titulo: "Resolución de Alcaldía N.° 198-2025-MDLO",
+    resumen:
+      "Conformar el Comité de Recepción de Obras de la Municipalidad Distrital de Los Olivos para el ejercicio 2025.",
+    fecha: "2025-10-08",
+    archivoUrl: "/documents/normas/resolucion-de-alcaldia-198-2025-mdlo.pdf",
+  },
+  {
+    id: "4772458",
+    slug: "acuerdo-de-concejo-048-2025-mdlo",
+    tipo: "acuerdo-de-concejo",
+    numero: "048-2025-MDLO",
+    titulo: "Acuerdo de Concejo N.° 048-2025-MDLO",
+    resumen:
+      "Aprobar la donación de bienes muebles dados de baja a favor de la Compañía de Bomberos Voluntarios del distrito.",
+    fecha: "2025-09-30",
+    archivoUrl: "/documents/normas/acuerdo-de-concejo-048-2025-mdlo.pdf",
+  },
+  {
+    id: "4766120",
+    slug: "decreto-de-alcaldia-009-2025-mdlo",
+    tipo: "decreto-de-alcaldia",
+    numero: "009-2025-MDLO",
+    titulo: "Decreto de Alcaldía N.° 009-2025-MDLO",
+    resumen:
+      "Aprobar el cronograma oficial de actividades por el 63.° aniversario de la creación política del distrito de Los Olivos.",
+    fecha: "2025-08-05",
+    archivoUrl: "/documents/normas/decreto-de-alcaldia-009-2025-mdlo.pdf",
+  },
+  {
+    id: "4760033",
+    slug: "ordenanza-671-2025-mdlo-areas-verdes",
+    tipo: "ordenanza",
+    numero: "671-2025-MDLO",
+    titulo: "Ordenanza N.° 671-2025-MDLO",
+    resumen:
+      "Ordenanza que regula la protección, conservación y manejo de las áreas verdes y el arbolado urbano del distrito.",
+    fecha: "2025-07-22",
+    archivoUrl: "/documents/normas/ordenanza-671-2025-mdlo-areas-verdes.pdf",
+  },
+  {
+    id: "4753880",
+    slug: "acuerdo-de-concejo-031-2025-mdlo",
+    tipo: "acuerdo-de-concejo",
+    numero: "031-2025-MDLO",
+    titulo: "Acuerdo de Concejo N.° 031-2025-MDLO",
+    resumen:
+      "Autorizar la suscripción de un convenio de cooperación interinstitucional con el Ministerio de Salud.",
+    fecha: "2025-05-27",
+    archivoUrl: "/documents/normas/acuerdo-de-concejo-031-2025-mdlo.pdf",
+  },
+  {
+    id: "4747702",
+    slug: "decreto-de-alcaldia-004-2025-mdlo",
+    tipo: "decreto-de-alcaldia",
+    numero: "004-2025-MDLO",
+    titulo: "Decreto de Alcaldía N.° 004-2025-MDLO",
+    resumen:
+      "Establecer disposiciones para la atención al público y el despacho de documentos durante el feriado de Semana Santa.",
+    fecha: "2025-04-10",
+    archivoUrl: "/documents/normas/decreto-de-alcaldia-004-2025-mdlo.pdf",
+  },
+  {
+    id: "4741188",
+    slug: "resolucion-de-gerencia-municipal-088-2025-mdlo-gm",
+    tipo: "resolucion",
+    numero: "088-2025-MDLO/GM",
+    titulo: "Resolución de Gerencia Municipal N.° 088-2025-MDLO/GM",
+    resumen:
+      "Aprobar la directiva para la administración de los fondos de caja chica de la Municipalidad Distrital de Los Olivos.",
+    fecha: "2025-03-19",
+    archivoUrl: "/documents/normas/resolucion-de-gerencia-municipal-088-2025-mdlo-gm.pdf",
+  },
+  {
+    id: "4734407",
+    slug: "decreto-de-alcaldia-011-2024-mdlo",
+    tipo: "decreto-de-alcaldia",
+    numero: "011-2024-MDLO",
+    titulo: "Decreto de Alcaldía N.° 011-2024-MDLO",
+    resumen:
+      "Aprobar el Plan de Seguridad Ciudadana 2025 de la Municipalidad Distrital de Los Olivos.",
+    fecha: "2024-12-20",
+    archivoUrl: "/documents/normas/decreto-de-alcaldia-011-2024-mdlo.pdf",
+  },
+  {
+    id: "4728901",
+    slug: "ordenanza-658-2024-mdlo-tenencia-responsable",
+    tipo: "ordenanza",
+    numero: "658-2024-MDLO",
+    titulo: "Ordenanza N.° 658-2024-MDLO",
+    resumen:
+      "Ordenanza que promueve la tenencia responsable de animales de compañía y regula el registro distrital de mascotas.",
+    fecha: "2024-11-14",
+    archivoUrl: "/documents/normas/ordenanza-658-2024-mdlo-tenencia-responsable.pdf",
+  },
+  {
+    id: "4723650",
+    slug: "resolucion-de-alcaldia-322-2024-mdlo",
+    tipo: "resolucion",
+    numero: "322-2024-MDLO",
+    titulo: "Resolución de Alcaldía N.° 322-2024-MDLO",
+    resumen:
+      "Designar a la Subgerente de Recursos Humanos de la Municipalidad Distrital de Los Olivos.",
+    fecha: "2024-09-24",
+    archivoUrl: "/documents/normas/resolucion-de-alcaldia-322-2024-mdlo.pdf",
+  },
+  {
+    id: "4718304",
+    slug: "acuerdo-de-concejo-015-2024-mdlo",
+    tipo: "acuerdo-de-concejo",
+    numero: "015-2024-MDLO",
+    titulo: "Acuerdo de Concejo N.° 015-2024-MDLO",
+    resumen:
+      "Declarar de interés distrital la Semana de la Juventud y las actividades de promoción del empleo juvenil.",
+    fecha: "2024-08-13",
+    archivoUrl: "/documents/normas/acuerdo-de-concejo-015-2024-mdlo.pdf",
+  },
+  {
+    id: "4712776",
+    slug: "decreto-de-alcaldia-006-2024-mdlo",
+    tipo: "decreto-de-alcaldia",
+    numero: "006-2024-MDLO",
+    titulo: "Decreto de Alcaldía N.° 006-2024-MDLO",
+    resumen:
+      "Modificar el Reglamento de la Ordenanza N.° 623-2023-MDLO que regula el comercio ambulatorio en el distrito.",
+    fecha: "2024-06-12",
+    archivoUrl: "/documents/normas/decreto-de-alcaldia-006-2024-mdlo.pdf",
+  },
+  {
+    id: "4705128",
+    slug: "ordenanza-645-2024-mdlo-incentivos-tributarios",
+    tipo: "ordenanza",
+    numero: "645-2024-MDLO",
+    titulo: "Ordenanza N.° 645-2024-MDLO",
+    resumen:
+      "Ordenanza que aprueba incentivos tributarios para el pago oportuno del impuesto predial y los arbitrios municipales.",
+    fecha: "2024-02-28",
+    archivoUrl: "/documents/normas/ordenanza-645-2024-mdlo-incentivos-tributarios.pdf",
+  },
+  {
+    id: "4701990",
+    slug: "ordenanza-637-2024-mdlo-plan-desarrollo-local",
+    tipo: "ordenanza",
+    numero: "637-2024-MDLO",
+    titulo: "Ordenanza N.° 637-2024-MDLO",
+    resumen:
+      "Aprobar el Plan de Desarrollo Local Concertado 2024-2030 del distrito de Los Olivos.",
+    fecha: "2024-01-25",
+    archivoUrl: "/documents/normas/ordenanza-637-2024-mdlo-plan-desarrollo-local.pdf",
+  },
+  {
+    id: "4697044",
+    slug: "ordenanza-623-2023-mdlo-comercio-ambulatorio",
+    tipo: "ordenanza",
+    numero: "623-2023-MDLO",
+    titulo: "Ordenanza N.° 623-2023-MDLO",
+    resumen:
+      "Ordenanza que regula el comercio ambulatorio y la ocupación de espacios públicos en el distrito de Los Olivos.",
+    fecha: "2023-10-30",
+    archivoUrl: "/documents/normas/ordenanza-623-2023-mdlo-comercio-ambulatorio.pdf",
+  },
+  {
     id: "4674165",
     slug: "resolucion-de-gerencia-municipal-526-2023-mdlo-gm",
     tipo: "resolucion",
@@ -10,6 +208,7 @@ export const normas: Norma[] = [
     resumen:
       "Conformar el Comité de Planificación de la Capacitación de la Municipalidad Distrital de Los Olivos.",
     fecha: "2023-09-18",
+    archivoUrl: "/documents/normas/resolucion-de-gerencia-municipal-526-2023-mdlo-gm.pdf",
   },
   {
     id: "4674182",
@@ -20,6 +219,7 @@ export const normas: Norma[] = [
     resumen:
       "Designar a los miembros integrantes del Comité de Selección para la conducción de un proceso de contratación.",
     fecha: "2023-09-18",
+    archivoUrl: "/documents/normas/resolucion-de-gerencia-municipal-577-2023-mdlo-gm.pdf",
   },
   {
     id: "4674209",
@@ -30,6 +230,7 @@ export const normas: Norma[] = [
     resumen:
       "Designar a los miembros integrantes del Comité de Selección para la conducción de un proceso de contratación.",
     fecha: "2023-09-18",
+    archivoUrl: "/documents/normas/resolucion-de-gerencia-municipal-578-2023-mdlo-gm.pdf",
   },
   {
     id: "4652075",
@@ -40,6 +241,7 @@ export const normas: Norma[] = [
     resumen:
       "Declarar la nulidad de la Resolución Gerencial N.° 153-2023-MDLO/GPV por haber sido expedida por un órgano incompetente.",
     fecha: "2023-09-07",
+    archivoUrl: "/documents/normas/resolucion-de-gerencia-municipal-524-2023-mdlo-gm.pdf",
   },
   {
     id: "4644990",
@@ -50,6 +252,7 @@ export const normas: Norma[] = [
     resumen:
       "Dar por concluida la designación del cargo de Subgerente de Limpieza Pública y Gestión de Residuos.",
     fecha: "2023-09-06",
+    archivoUrl: "/documents/normas/resolucion-de-alcaldia-187-2023-cdlo.pdf",
   },
   {
     id: "4645062",
@@ -60,6 +263,7 @@ export const normas: Norma[] = [
     resumen:
       "Designar como Gerente de Desarrollo Económico de la Municipalidad Distrital de Los Olivos.",
     fecha: "2023-09-06",
+    archivoUrl: "/documents/normas/resolucion-de-alcaldia-188-2023-cdlo.pdf",
   },
   {
     id: "4645071",
@@ -70,6 +274,7 @@ export const normas: Norma[] = [
     resumen:
       "Encargar la Subgerencia de Limpieza Pública y Gestión de Residuos Públicos de la municipalidad.",
     fecha: "2023-09-06",
+    archivoUrl: "/documents/normas/resolucion-de-alcaldia-189-2023-cdlo.pdf",
   },
   {
     id: "4652053",
@@ -80,6 +285,7 @@ export const normas: Norma[] = [
     resumen:
       "Aprobar la formalización de las modificaciones presupuestarias en el nivel funcional programático.",
     fecha: "2023-09-05",
+    archivoUrl: "/documents/normas/resolucion-de-gerencia-municipal-522-2023-mdlo-gm.pdf",
   },
   {
     id: "4652066",
@@ -90,5 +296,6 @@ export const normas: Norma[] = [
     resumen:
       "Declarar fundada en parte el recurso de apelación interpuesto por una administrada.",
     fecha: "2023-09-05",
+    archivoUrl: "/documents/normas/resolucion-de-gerencia-municipal-523-2023-mdlo-gm.pdf",
   },
 ];

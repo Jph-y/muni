@@ -63,6 +63,8 @@ src/
     servicios/     # catálogo y tarjetas de servicios
     faq/           # acordeón de preguntas frecuentes
     contacto/      # formulario de contacto
+    normas/        # tarjetas, catálogo y visor PDF de normas
+    publicaciones/ # tarjetas y catálogo de informes y publicaciones
     shared/        # componentes reutilizables
   lib/
     api/           # cliente HTTP, tipos y acceso a contenido
@@ -70,6 +72,8 @@ src/
     format/        # moneda PEN, fechas es-PE y validaciones
     institucional/ # filtros y utilidades del módulo institucional
     tramites/      # filtros de trámites, servicios y FAQ
+    normas/        # filtros de normas legales
+    publicaciones/ # filtros de informes y publicaciones
     seo/           # metadata y JSON-LD
   mocks/           # datos simulados y handlers MSW
   proxy.ts         # protección de rutas privadas
@@ -79,10 +83,11 @@ tests/
 
 ## Estado
 
-Fases 0 a 3 completadas: setup técnico, sistema de diseño, layout institucional,
+Fases 0 a 4 completadas: setup técnico, sistema de diseño, layout institucional,
 home con datos simulados, páginas de sistema, módulo institucional completo
-(organización, organigrama, autoridades, directorio, sedes y documentos) y el
+(organización, organigrama, autoridades, directorio, sedes y documentos), el
 módulo de trámites y servicios (catálogo, detalle, TUPA, servicios, contacto,
-emergencias y preguntas frecuentes).
+emergencias y preguntas frecuentes) y el módulo de normas y documentos
+(normas legales, visor PDF, informes y publicaciones).
 El detalle del avance y las siguientes fases está en
 [`docs/PLAN-FRONTEND.md`](docs/PLAN-FRONTEND.md).

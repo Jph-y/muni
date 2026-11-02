@@ -24,7 +24,22 @@ export type Norma = {
   titulo: string;
   resumen: string;
   fecha: string;
-  archivoUrl?: string;
+  archivoUrl: string;
+  archivoNombre?: string;
+};
+
+export type TipoPublicacion = "formato" | "formulario" | "informe";
+
+export type Publicacion = {
+  id: string;
+  slug: string;
+  tipo: TipoPublicacion;
+  titulo: string;
+  descripcion: string;
+  fecha: string;
+  oficina: string;
+  archivoUrl: string;
+  archivoNombre?: string;
 };
 
 export type Campana = {

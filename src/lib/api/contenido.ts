@@ -11,10 +11,12 @@ import type {
   Noticia,
   PreguntaFrecuente,
   PuntoEmergencia,
+  Publicacion,
   Sede,
   Servicio,
   Tramite,
   TipoNorma,
+  TipoPublicacion,
 } from "@/lib/api/types";
 import { campanas as campanasMock } from "@/mocks/data/campanas";
 import { puntosEmergencia as emergenciasMock } from "@/mocks/data/emergencias";
@@ -28,6 +30,7 @@ import {
 import { normas as normasMock } from "@/mocks/data/normas";
 import { noticias as noticiasMock } from "@/mocks/data/noticias";
 import { preguntasFrecuentes as preguntasMock } from "@/mocks/data/preguntas-frecuentes";
+import { publicaciones as publicacionesMock } from "@/mocks/data/publicaciones";
 import { servicios as serviciosMock } from "@/mocks/data/servicios";
 import { tramites as tramitesMock } from "@/mocks/data/tramites";
 
@@ -56,6 +59,38 @@ export async function obtenerNormas(tipo?: TipoNorma): Promise<Norma[]> {
   const filtradas = tipo ? normas.filter((norma) => norma.tipo === tipo) : normas;
 
   return ordenarPorFecha(filtradas);
+}
+
+export async function obtenerNormaPorSlug(slug: string): Promise<Norma | null> {
+  if (USAR_MOCKS) {
+    return normasMock.find((norma) => norma.slug === slug) ?? null;
+  }
+
+  return apiFetch<Norma | null>(`/contenido/normas/${slug}`);
+}
+
+export async function obtenerPublicaciones(
+  tipo?: TipoPublicacion,
+): Promise<Publicacion[]> {
+  const publicaciones = USAR_MOCKS
+    ? publicacionesMock
+    : await apiFetch<Publicacion[]>("/contenido/publicaciones");
+
+  const filtradas = tipo
+    ? publicaciones.filter((publicacion) => publicacion.tipo === tipo)
+    : publicaciones;
+
+  return ordenarPorFecha(filtradas);
+}
+
+export async function obtenerPublicacionPorSlug(
+  slug: string,
+): Promise<Publicacion | null> {
+  if (USAR_MOCKS) {
+    return publicacionesMock.find((publicacion) => publicacion.slug === slug) ?? null;
+  }
+
+  return apiFetch<Publicacion | null>(`/contenido/publicaciones/${slug}`);
 }
 
 export async function obtenerCampanas(): Promise<Campana[]> {

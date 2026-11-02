@@ -11,12 +11,26 @@ import {
 import { normas } from "@/mocks/data/normas";
 import { noticias } from "@/mocks/data/noticias";
 import { preguntasFrecuentes } from "@/mocks/data/preguntas-frecuentes";
+import { publicaciones } from "@/mocks/data/publicaciones";
 import { servicios } from "@/mocks/data/servicios";
 import { tramites } from "@/mocks/data/tramites";
 
 const contenido = [
   http.get("*/contenido/noticias", () => HttpResponse.json(noticias)),
   http.get("*/contenido/normas", () => HttpResponse.json(normas)),
+  http.get("*/contenido/normas/:slug", ({ params }) => {
+    const norma = normas.find((item) => item.slug === params.slug);
+    return norma
+      ? HttpResponse.json(norma)
+      : HttpResponse.json({ message: "Norma no encontrada" }, { status: 404 });
+  }),
+  http.get("*/contenido/publicaciones", () => HttpResponse.json(publicaciones)),
+  http.get("*/contenido/publicaciones/:slug", ({ params }) => {
+    const publicacion = publicaciones.find((item) => item.slug === params.slug);
+    return publicacion
+      ? HttpResponse.json(publicacion)
+      : HttpResponse.json({ message: "Publicación no encontrada" }, { status: 404 });
+  }),
   http.get("*/contenido/campanas", () => HttpResponse.json(campanas)),
   http.get("*/contenido/tramites", () => HttpResponse.json(tramites)),
   http.get("*/contenido/tramites/:slug", ({ params }) => {

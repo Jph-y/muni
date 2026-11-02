@@ -1,12 +1,18 @@
 import type { MetadataRoute } from "next";
 import {
   obtenerFuncionarios,
+  obtenerNormas,
+  obtenerPublicaciones,
   obtenerSedes,
   obtenerServicios,
   obtenerTramites,
 } from "@/lib/api/contenido";
-import type { CategoriaTramite } from "@/lib/api/types";
-import { etiquetasCategoriaTramite } from "@/lib/constants/etiquetas";
+import type { CategoriaTramite, TipoNorma, TipoPublicacion } from "@/lib/api/types";
+import {
+  etiquetasCategoriaTramite,
+  etiquetasTipoNorma,
+  etiquetasTipoPublicacion,
+} from "@/lib/constants/etiquetas";
 import { siteConfig } from "@/lib/constants/site";
 
 const rutasPublicas = [
@@ -47,14 +53,19 @@ const rutasPublicas = [
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const ahora = new Date();
-  const [sedes, funcionarios, tramites, servicios] = await Promise.all([
-    obtenerSedes(),
-    obtenerFuncionarios(),
-    obtenerTramites(),
-    obtenerServicios(),
-  ]);
+  const [sedes, funcionarios, tramites, servicios, normas, publicaciones] =
+    await Promise.all([
+      obtenerSedes(),
+      obtenerFuncionarios(),
+      obtenerTramites(),
+      obtenerServicios(),
+      obtenerNormas(),
+      obtenerPublicaciones(),
+    ]);
 
   const categorias = Object.keys(etiquetasCategoriaTramite) as CategoriaTramite[];
+  const tiposNorma = Object.keys(etiquetasTipoNorma) as TipoNorma[];
+  const tiposPublicacion = Object.keys(etiquetasTipoPublicacion) as TipoPublicacion[];
 
   const rutasDinamicas = [
     ...sedes.map((sede) => `/institucional/sedes/${sede.slug}`),
@@ -64,6 +75,10 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     ...tramites.map((tramite) => `/tramites/${tramite.slug}`),
     ...categorias.map((categoria) => `/tramites/categoria/${categoria}`),
     ...servicios.map((servicio) => `/servicios/${servicio.slug}`),
+    ...normas.map((norma) => `/normas/${norma.slug}`),
+    ...tiposNorma.map((tipo) => `/normas/tipo/${tipo}`),
+    ...publicaciones.map((publicacion) => `/informes-publicaciones/${publicacion.slug}`),
+    ...tiposPublicacion.map((tipo) => `/informes-publicaciones/tipo/${tipo}`),
   ];
 
   return [...rutasPublicas, ...rutasDinamicas].map((ruta) => ({
