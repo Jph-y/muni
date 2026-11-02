@@ -55,28 +55,34 @@ pnpm exec playwright install
 src/
   app/            # rutas (App Router), metadata, sitemap y robots
   components/
-    ui/           # componentes shadcn/ui
-    layout/       # header, footer, navegación, migas de pan
-    home/         # secciones de la portada
+    ui/            # componentes shadcn/ui
+    layout/        # header, footer, navegación, migas de pan
+    home/          # secciones de la portada
     institucional/ # directorio, organigrama, sedes y documentos
-    shared/       # componentes reutilizables
+    tramites/      # catálogo, tarjetas, pasos y tabla TUPA
+    servicios/     # catálogo y tarjetas de servicios
+    faq/           # acordeón de preguntas frecuentes
+    contacto/      # formulario de contacto
+    shared/        # componentes reutilizables
   lib/
-    api/          # cliente HTTP, tipos y acceso a contenido
-    constants/    # configuración del sitio, navegación y etiquetas
-    format/       # moneda PEN, fechas es-PE y validaciones
+    api/           # cliente HTTP, tipos y acceso a contenido
+    constants/     # configuración del sitio, navegación y etiquetas
+    format/        # moneda PEN, fechas es-PE y validaciones
     institucional/ # filtros y utilidades del módulo institucional
-    seo/          # metadata y JSON-LD
-  mocks/          # datos simulados y handlers MSW
-  proxy.ts        # protección de rutas privadas
+    tramites/      # filtros de trámites, servicios y FAQ
+    seo/           # metadata y JSON-LD
+  mocks/           # datos simulados y handlers MSW
+  proxy.ts         # protección de rutas privadas
 tests/
   unit/ integration/ e2e/
 ```
 
 ## Estado
 
-Fases 0, 1 y 2 completadas: setup técnico, sistema de diseño, layout institucional,
-home con datos simulados, páginas de sistema y el módulo institucional completo
-(organización, organigrama, autoridades, directorio de funcionarios, sedes y
-documentos de gestión) con datos públicos de gob.pe.
+Fases 0 a 3 completadas: setup técnico, sistema de diseño, layout institucional,
+home con datos simulados, páginas de sistema, módulo institucional completo
+(organización, organigrama, autoridades, directorio, sedes y documentos) y el
+módulo de trámites y servicios (catálogo, detalle, TUPA, servicios, contacto,
+emergencias y preguntas frecuentes).
 El detalle del avance y las siguientes fases está en
 [`docs/PLAN-FRONTEND.md`](docs/PLAN-FRONTEND.md).

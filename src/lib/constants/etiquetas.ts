@@ -1,9 +1,13 @@
 import type {
+  CategoriaFaq,
   CategoriaNoticia,
+  CategoriaServicio,
   CategoriaTramite,
+  ModalidadAtencion,
   NivelOrganizacional,
   TipoDocumentoGestion,
   TipoNorma,
+  TipoPuntoEmergencia,
 } from "@/lib/api/types";
 
 export const etiquetasCategoriaNoticia: Record<CategoriaNoticia, string> = {
@@ -29,6 +33,64 @@ export const etiquetasCategoriaTramite: Record<CategoriaTramite, string> = {
   certificados: "Certificados",
   "desarrollo-urbano": "Desarrollo urbano",
   "servicios-sociales": "Servicios sociales",
+  "mesa-de-partes": "Mesa de partes",
+};
+
+export const descripcionesCategoriaTramite: Record<CategoriaTramite, string> = {
+  tributos:
+    "Declaraciones, fraccionamientos y constancias vinculadas a tus obligaciones municipales.",
+  "licencias-de-funcionamiento":
+    "Autorizaciones para abrir o regularizar un negocio en el distrito.",
+  "matrimonio-y-divorcio":
+    "Matrimonio civil, separación convencional y divorcio ulterior.",
+  certificados:
+    "Documentos que acreditan domicilio, identidad, numeración o encontrarse al día.",
+  "desarrollo-urbano":
+    "Autorizaciones de anuncios, compatibilidad de uso y habilitaciones urbanas.",
+  "servicios-sociales":
+    "Programas de apoyo a la primera infancia, adultos mayores y familias.",
+  "mesa-de-partes": "Presentación de documentos y solicitudes con seguimiento en línea.",
+};
+
+export const etiquetasModalidad: Record<ModalidadAtencion, string> = {
+  virtual: "En línea",
+  presencial: "Presencial",
+  mixto: "Mixto",
+};
+
+export const etiquetasCategoriaServicio: Record<CategoriaServicio, string> = {
+  "limpieza-publica": "Limpieza pública",
+  "seguridad-ciudadana": "Seguridad ciudadana",
+  salud: "Salud",
+  "programas-sociales": "Programas sociales",
+  "medio-ambiente": "Medio ambiente",
+  "cultura-y-deporte": "Cultura y deporte",
+};
+
+export const descripcionesCategoriaServicio: Record<CategoriaServicio, string> = {
+  "limpieza-publica": "Recojo de residuos, barrido de calles y puntos críticos.",
+  "seguridad-ciudadana": "Serenazgo, videovigilancia y atención de emergencias.",
+  salud: "Campañas preventivas y atención primaria en la jurisdicción.",
+  "programas-sociales": "Apoyo alimentario, protección y acompañamiento familiar.",
+  "medio-ambiente": "Áreas verdes, tenencia responsable y educación ambiental.",
+  "cultura-y-deporte": "Talleres, biblioteca y actividades recreativas gratuitas.",
+};
+
+export const etiquetasCategoriaFaq: Record<CategoriaFaq, string> = {
+  tramites: "Trámites",
+  tributos: "Tributos",
+  "mesa-de-partes": "Mesa de partes",
+  cuenta: "Cuenta digital",
+  servicios: "Servicios",
+  institucional: "Institucional",
+};
+
+export const etiquetasTipoPuntoEmergencia: Record<TipoPuntoEmergencia, string> = {
+  comisaria: "Comisaría",
+  serenazgo: "Serenazgo",
+  bomberos: "Bomberos",
+  salud: "Salud",
+  central: "Central de emergencias",
 };
 
 export const etiquetasNivelOrganizacional: Record<NivelOrganizacional, string> = {

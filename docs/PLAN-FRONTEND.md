@@ -687,22 +687,60 @@ funcionen de extremo a extremo. El contenido indica que son referenciales.
 **Pruebas:** 19 unitarias nuevas (filtros, iniciales, agrupación) y 4 de integración
 contra los handlers MSW (listados, detalle y 404).
 
+### Fase 3 — Trámites, servicios y atención ciudadana (completada)
+
+**Rutas implementadas (9):**
+
+| Ruta                         | Contenido                                                                      |
+| ---------------------------- | ------------------------------------------------------------------------------ |
+| `/tramites`                  | Catálogo de 19 trámites con búsqueda, filtro por categoría y canales de inicio |
+| `/tramites/[slug]`           | Requisitos, pasos, costos, plazo, oficina, base legal y descarga de formato    |
+| `/tramites/categoria/[slug]` | Trámites por categoría (7 categorías) con navegación cruzada                   |
+| `/tramites/tupa`             | Tabla filtrable del TUPA, versión móvil en tarjetas y descarga PDF             |
+| `/servicios`                 | Catálogo de 13 servicios municipales con búsqueda y filtro                     |
+| `/servicios/[slug]`          | Detalle del servicio, requisitos, sede, horario y contacto                     |
+| `/contacto`                  | Canales oficiales, formulario validado con Zod/RHF y mapa de la sede central   |
+| `/emergencias`               | Comisarías, Serenazgo, bomberos, salud y recomendaciones                       |
+| `/preguntas-frecuentes`      | 16 preguntas agrupadas por tema con búsqueda y acordeón                        |
+
+**Datos:** se amplió el modelo `Tramite` con modalidad, código TUPA, pasos, formato
+descargable y base legal; se agregaron los tipos `Servicio`, `PreguntaFrecuente` y
+`PuntoEmergencia`. Los seeds incluyen 19 trámites, 13 servicios, 16 preguntas y 10
+puntos de emergencia con datos coherentes con el TUPA y el portal gob.pe.
+
+**Componentes nuevos:**
+
+- `components/tramites/tramite-card.tsx`, `catalogo-tramites.tsx`,
+  `pasos-timeline.tsx` y `tabla-tupa.tsx`.
+- `components/servicios/servicio-card.tsx` y `catalogo-servicios.tsx`.
+- `components/faq/acordeon-faq.tsx` (búsqueda + acordeón por categoría).
+- `components/contacto/formulario-contacto.tsx` (RHF + Zod, estado de éxito simulado).
+
+**Lógica pura:** `src/lib/tramites/filtros.ts` (filtros de trámites, servicios y FAQ,
+conteo y agrupación) y `src/lib/texto.ts` (normalización reutilizable).
+
+**Documentos:** 5 PDF nuevos (`tupa-2026`, solicitudes de licencia, matrimonio y mesa
+de partes, y declaración jurada), todos validados con estructura PDF correcta.
+
+**Pruebas:** 21 unitarias nuevas (filtros de trámites, servicios y FAQ) y 6 de
+integración contra MSW (catálogo, detalle, 404, servicios, FAQ y emergencias).
+
 ### Verificación ejecutada
 
-| Comando                      | Resultado                                                   |
-| ---------------------------- | ----------------------------------------------------------- |
-| `pnpm typecheck`             | Sin errores                                                 |
-| `pnpm lint`                  | Sin errores                                                 |
-| `pnpm test`                  | 31/31 pruebas aprobadas                                     |
-| `pnpm build`                 | Build correcto con 33 páginas prerenderizadas               |
-| `pnpm start` + request a `/` | HTTP 200 con todas las secciones                            |
-| Request a `/mi-cuenta`       | HTTP 307 → `/login?redirect=/mi-cuenta`                     |
-| Smoke test de 9 rutas nuevas | HTTP 200 en todas; PDF y `sitemap.xml` sirven correctamente |
+| Comando                       | Resultado                                                    |
+| ----------------------------- | ------------------------------------------------------------ |
+| `pnpm typecheck`              | Sin errores                                                  |
+| `pnpm lint`                   | Sin errores                                                  |
+| `pnpm test`                   | 52/52 pruebas aprobadas                                      |
+| `pnpm build`                  | Build correcto con 81 páginas prerenderizadas                |
+| `pnpm start` + request a `/`  | HTTP 200 con todas las secciones                             |
+| Request a `/mi-cuenta`        | HTTP 307 → `/login?redirect=/mi-cuenta`                      |
+| Smoke test de 18 rutas nuevas | HTTP 200 en todas; PDFs y `sitemap.xml` sirven correctamente |
 
 ### Siguiente fase
 
-Fase 3 — trámites y servicios: catálogo `/tramites`, detalle con requisitos y costos,
-TUPA filtrable, `/servicios` y categorías; además de contacto, emergencias y FAQ.
+Fase 4 — normas y documentos: `/normas` con filtros por tipo y año, detalle con visor
+PDF, `/normas/tipo/[slug]`, `/informes-publicaciones` y sus variantes.
 
 ---
 

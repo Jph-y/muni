@@ -6,8 +6,8 @@ export const siteConfig = {
     "Portal web oficial de la Municipalidad Distrital de Los Olivos. Consulta trámites, servicios, normas, noticias y realiza tus pagos en línea.",
   url: "https://www.munilosolivos.gob.pe",
   direccion: "Av. Carlos Izaguirre 813, Urb. Mercurio, Los Olivos, Lima",
-  horario: "Lunes a viernes, 8:00 a. m. a 4:30 p. m.",
-  telefonoCentral: "(01) 510-4230",
+  horario: "Lunes a viernes, 8:30 a. m. a 6:00 p. m. · Sábados, 8:00 a. m. a 1:00 p. m.",
+  telefonoCentral: "(01) 321-4547",
   whatsappSerenazgo: "937 016 501",
   redes: {
     facebook: "https://facebook.com/munilosolivos",

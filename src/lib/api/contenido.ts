@@ -3,15 +3,21 @@ import type {
   AreaOrganizacional,
   Autoridad,
   Campana,
+  CategoriaServicio,
+  CategoriaTramite,
   DocumentoGestion,
   Funcionario,
   Norma,
   Noticia,
+  PreguntaFrecuente,
+  PuntoEmergencia,
   Sede,
+  Servicio,
   Tramite,
   TipoNorma,
 } from "@/lib/api/types";
 import { campanas as campanasMock } from "@/mocks/data/campanas";
+import { puntosEmergencia as emergenciasMock } from "@/mocks/data/emergencias";
 import {
   areasOrganizacionales as areasMock,
   autoridades as autoridadesMock,
@@ -21,6 +27,8 @@ import {
 } from "@/mocks/data/institucional";
 import { normas as normasMock } from "@/mocks/data/normas";
 import { noticias as noticiasMock } from "@/mocks/data/noticias";
+import { preguntasFrecuentes as preguntasMock } from "@/mocks/data/preguntas-frecuentes";
+import { servicios as serviciosMock } from "@/mocks/data/servicios";
 import { tramites as tramitesMock } from "@/mocks/data/tramites";
 
 function ordenarPorFecha<T extends { fecha: string }>(items: T[]): T[] {
@@ -63,8 +71,58 @@ export async function obtenerCampanaVigente(): Promise<Campana | null> {
   return campanas[0] ?? null;
 }
 
-export async function obtenerTramites(): Promise<Tramite[]> {
-  return USAR_MOCKS ? tramitesMock : apiFetch<Tramite[]>("/contenido/tramites");
+export async function obtenerTramites(categoria?: CategoriaTramite): Promise<Tramite[]> {
+  const tramites = USAR_MOCKS
+    ? tramitesMock
+    : await apiFetch<Tramite[]>("/contenido/tramites");
+
+  const filtrados = categoria
+    ? tramites.filter((tramite) => tramite.categoria === categoria)
+    : tramites;
+
+  return [...filtrados].sort((a, b) => a.nombre.localeCompare(b.nombre, "es"));
+}
+
+export async function obtenerTramitePorSlug(slug: string): Promise<Tramite | null> {
+  if (USAR_MOCKS) {
+    return tramitesMock.find((tramite) => tramite.slug === slug) ?? null;
+  }
+
+  return apiFetch<Tramite | null>(`/contenido/tramites/${slug}`);
+}
+
+export async function obtenerServicios(
+  categoria?: CategoriaServicio,
+): Promise<Servicio[]> {
+  const servicios = USAR_MOCKS
+    ? serviciosMock
+    : await apiFetch<Servicio[]>("/contenido/servicios");
+
+  const filtrados = categoria
+    ? servicios.filter((servicio) => servicio.categoria === categoria)
+    : servicios;
+
+  return [...filtrados].sort((a, b) => a.nombre.localeCompare(b.nombre, "es"));
+}
+
+export async function obtenerServicioPorSlug(slug: string): Promise<Servicio | null> {
+  if (USAR_MOCKS) {
+    return serviciosMock.find((servicio) => servicio.slug === slug) ?? null;
+  }
+
+  return apiFetch<Servicio | null>(`/contenido/servicios/${slug}`);
+}
+
+export async function obtenerPreguntasFrecuentes(): Promise<PreguntaFrecuente[]> {
+  return USAR_MOCKS
+    ? preguntasMock
+    : apiFetch<PreguntaFrecuente[]>("/contenido/preguntas-frecuentes");
+}
+
+export async function obtenerPuntosEmergencia(): Promise<PuntoEmergencia[]> {
+  return USAR_MOCKS
+    ? emergenciasMock
+    : apiFetch<PuntoEmergencia[]>("/contenido/emergencias");
 }
 
 export async function obtenerSedes(): Promise<Sede[]> {

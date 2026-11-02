@@ -1,5 +1,12 @@
 import type { MetadataRoute } from "next";
-import { obtenerFuncionarios, obtenerSedes } from "@/lib/api/contenido";
+import {
+  obtenerFuncionarios,
+  obtenerSedes,
+  obtenerServicios,
+  obtenerTramites,
+} from "@/lib/api/contenido";
+import type { CategoriaTramite } from "@/lib/api/types";
+import { etiquetasCategoriaTramite } from "@/lib/constants/etiquetas";
 import { siteConfig } from "@/lib/constants/site";
 
 const rutasPublicas = [
@@ -40,16 +47,23 @@ const rutasPublicas = [
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const ahora = new Date();
-  const [sedes, funcionarios] = await Promise.all([
+  const [sedes, funcionarios, tramites, servicios] = await Promise.all([
     obtenerSedes(),
     obtenerFuncionarios(),
+    obtenerTramites(),
+    obtenerServicios(),
   ]);
+
+  const categorias = Object.keys(etiquetasCategoriaTramite) as CategoriaTramite[];
 
   const rutasDinamicas = [
     ...sedes.map((sede) => `/institucional/sedes/${sede.slug}`),
     ...funcionarios.map(
       (funcionario) => `/institucional/directorio-funcionarios/${funcionario.slug}`,
     ),
+    ...tramites.map((tramite) => `/tramites/${tramite.slug}`),
+    ...categorias.map((categoria) => `/tramites/categoria/${categoria}`),
+    ...servicios.map((servicio) => `/servicios/${servicio.slug}`),
   ];
 
   return [...rutasPublicas, ...rutasDinamicas].map((ruta) => ({

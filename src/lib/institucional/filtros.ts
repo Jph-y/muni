@@ -5,6 +5,7 @@ import type {
   NivelOrganizacional,
   TipoDocumentoGestion,
 } from "@/lib/api/types";
+import { normalizarTexto } from "@/lib/texto";
 
 const ordenNiveles: NivelOrganizacional[] = [
   "alta-direccion",
@@ -13,13 +14,7 @@ const ordenNiveles: NivelOrganizacional[] = [
   "subgerencia",
 ];
 
-export function normalizarTexto(valor: string): string {
-  return valor
-    .normalize("NFD")
-    .replace(/[\u0300-\u036f]/g, "")
-    .toLowerCase()
-    .trim();
-}
+export { normalizarTexto };
 
 export function obtenerIniciales(nombre: string): string {
   const palabras = nombre
