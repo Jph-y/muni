@@ -1,4 +1,6 @@
 import { apiFetch, USAR_MOCKS } from "@/lib/api/client";
+import { obtenerEstadoCampana } from "@/lib/campanas/filtros";
+import { obtenerFechaActual } from "@/lib/fechas";
 import type {
   AreaOrganizacional,
   Autoridad,
@@ -53,6 +55,14 @@ export async function obtenerNoticiasDestacadas(limite = 3): Promise<Noticia[]> 
   return (destacadas.length > 0 ? destacadas : noticias).slice(0, limite);
 }
 
+export async function obtenerNoticiaPorSlug(slug: string): Promise<Noticia | null> {
+  if (USAR_MOCKS) {
+    return noticiasMock.find((noticia) => noticia.slug === slug) ?? null;
+  }
+
+  return apiFetch<Noticia | null>(`/contenido/noticias/${slug}`);
+}
+
 export async function obtenerNormas(tipo?: TipoNorma): Promise<Norma[]> {
   const normas = USAR_MOCKS ? normasMock : await apiFetch<Norma[]>("/contenido/normas");
 
@@ -102,8 +112,20 @@ export async function obtenerCampanas(): Promise<Campana[]> {
 }
 
 export async function obtenerCampanaVigente(): Promise<Campana | null> {
-  const campanas = await obtenerCampanas();
-  return campanas[0] ?? null;
+  const [campanas, hoy] = await Promise.all([obtenerCampanas(), obtenerFechaActual()]);
+  const vigente = campanas.find(
+    (campana) => obtenerEstadoCampana(campana, hoy) === "vigente",
+  );
+
+  return vigente ?? campanas[0] ?? null;
+}
+
+export async function obtenerCampanaPorSlug(slug: string): Promise<Campana | null> {
+  if (USAR_MOCKS) {
+    return campanasMock.find((campana) => campana.slug === slug) ?? null;
+  }
+
+  return apiFetch<Campana | null>(`/contenido/campanas/${slug}`);
 }
 
 export async function obtenerTramites(categoria?: CategoriaTramite): Promise<Tramite[]> {

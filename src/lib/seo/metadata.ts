@@ -78,6 +78,46 @@ export function jsonLdMigasDePan(items: { nombre: string; url: string }[]) {
   };
 }
 
+export function jsonLdEvento(campana: {
+  titulo: string;
+  descripcion: string;
+  inicio: string;
+  fin: string;
+  imagen?: string;
+  lugar?: string;
+  url: string;
+}) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "Event",
+    name: campana.titulo,
+    description: campana.descripcion,
+    startDate: campana.inicio,
+    endDate: campana.fin,
+    image: campana.imagen ? [campana.imagen] : undefined,
+    eventStatus: "https://schema.org/EventScheduled",
+    eventAttendanceMode: "https://schema.org/OfflineEventAttendanceMode",
+    location: campana.lugar
+      ? {
+          "@type": "Place",
+          name: campana.lugar,
+          address: {
+            "@type": "PostalAddress",
+            addressLocality: "Los Olivos",
+            addressRegion: "Lima",
+            addressCountry: "PE",
+          },
+        }
+      : undefined,
+    organizer: {
+      "@type": "GovernmentOrganization",
+      name: siteConfig.nombre,
+      url: siteConfig.url,
+    },
+    url: new URL(campana.url, siteConfig.url).toString(),
+  };
+}
+
 export function jsonLdNoticia(noticia: {
   titulo: string;
   resumen: string;

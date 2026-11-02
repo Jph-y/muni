@@ -17,6 +17,12 @@ import { tramites } from "@/mocks/data/tramites";
 
 const contenido = [
   http.get("*/contenido/noticias", () => HttpResponse.json(noticias)),
+  http.get("*/contenido/noticias/:slug", ({ params }) => {
+    const noticia = noticias.find((item) => item.slug === params.slug);
+    return noticia
+      ? HttpResponse.json(noticia)
+      : HttpResponse.json({ message: "Noticia no encontrada" }, { status: 404 });
+  }),
   http.get("*/contenido/normas", () => HttpResponse.json(normas)),
   http.get("*/contenido/normas/:slug", ({ params }) => {
     const norma = normas.find((item) => item.slug === params.slug);
@@ -32,6 +38,12 @@ const contenido = [
       : HttpResponse.json({ message: "Publicación no encontrada" }, { status: 404 });
   }),
   http.get("*/contenido/campanas", () => HttpResponse.json(campanas)),
+  http.get("*/contenido/campanas/:slug", ({ params }) => {
+    const campana = campanas.find((item) => item.slug === params.slug);
+    return campana
+      ? HttpResponse.json(campana)
+      : HttpResponse.json({ message: "Campaña no encontrada" }, { status: 404 });
+  }),
   http.get("*/contenido/tramites", () => HttpResponse.json(tramites)),
   http.get("*/contenido/tramites/:slug", ({ params }) => {
     const tramite = tramites.find((item) => item.slug === params.slug);

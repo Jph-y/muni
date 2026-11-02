@@ -10,6 +10,9 @@ export type Noticia = {
   categoria: CategoriaNoticia;
   fecha: string;
   imagen: string;
+  galeria?: string[];
+  etiquetas?: string[];
+  autor?: string;
   destacada?: boolean;
 };
 
@@ -42,6 +45,8 @@ export type Publicacion = {
   archivoNombre?: string;
 };
 
+export type EstadoCampana = "vigente" | "proxima" | "finalizada";
+
 export type Campana = {
   id: string;
   slug: string;
@@ -51,6 +56,9 @@ export type Campana = {
   fin: string;
   imagen: string;
   enlace?: string;
+  lugar?: string;
+  horario?: string;
+  organiza?: string;
 };
 
 export type CategoriaTramite =

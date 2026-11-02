@@ -3,6 +3,7 @@ import type {
   CategoriaNoticia,
   CategoriaServicio,
   CategoriaTramite,
+  EstadoCampana,
   ModalidadAtencion,
   NivelOrganizacional,
   TipoDocumentoGestion,
@@ -18,6 +19,32 @@ export const etiquetasCategoriaNoticia: Record<CategoriaNoticia, string> = {
   educacion: "Educación",
   cultura: "Cultura",
   emprendimiento: "Emprendimiento",
+};
+
+export const descripcionesCategoriaNoticia: Record<CategoriaNoticia, string> = {
+  seguridad:
+    "Operativos, patrullaje, videovigilancia y acciones de prevención en el distrito.",
+  salud:
+    "Campañas de vacunación, atención primaria, veterinaria municipal y vida saludable.",
+  obras:
+    "Parques, vías, espacios públicos e infraestructura ejecutada por la municipalidad.",
+  educacion:
+    "Apoyo a instituciones educativas, becas, talleres y actividades formativas.",
+  cultura:
+    "Festivales, actividades artísticas, biblioteca y fechas emblemáticas del distrito.",
+  emprendimiento: "Ferias, formalización, capacitación y apoyo a los negocios locales.",
+};
+
+export const etiquetasEstadoCampana: Record<EstadoCampana, string> = {
+  vigente: "Vigente",
+  proxima: "Próxima",
+  finalizada: "Finalizada",
+};
+
+export const descripcionesEstadoCampana: Record<EstadoCampana, string> = {
+  vigente: "Campañas y eventos que puedes aprovechar en este momento.",
+  proxima: "Actividades programadas que comenzarán en los próximos días.",
+  finalizada: "Campañas y eventos que ya concluyeron, disponibles para consulta.",
 };
 
 export const etiquetasTipoNorma: Record<TipoNorma, string> = {

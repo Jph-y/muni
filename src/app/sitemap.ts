@@ -1,14 +1,22 @@
 import type { MetadataRoute } from "next";
 import {
+  obtenerCampanas,
   obtenerFuncionarios,
   obtenerNormas,
+  obtenerNoticias,
   obtenerPublicaciones,
   obtenerSedes,
   obtenerServicios,
   obtenerTramites,
 } from "@/lib/api/contenido";
-import type { CategoriaTramite, TipoNorma, TipoPublicacion } from "@/lib/api/types";
+import type {
+  CategoriaNoticia,
+  CategoriaTramite,
+  TipoNorma,
+  TipoPublicacion,
+} from "@/lib/api/types";
 import {
+  etiquetasCategoriaNoticia,
   etiquetasCategoriaTramite,
   etiquetasTipoNorma,
   etiquetasTipoPublicacion,
@@ -53,19 +61,30 @@ const rutasPublicas = [
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const ahora = new Date();
-  const [sedes, funcionarios, tramites, servicios, normas, publicaciones] =
-    await Promise.all([
-      obtenerSedes(),
-      obtenerFuncionarios(),
-      obtenerTramites(),
-      obtenerServicios(),
-      obtenerNormas(),
-      obtenerPublicaciones(),
-    ]);
+  const [
+    sedes,
+    funcionarios,
+    tramites,
+    servicios,
+    normas,
+    publicaciones,
+    noticias,
+    campanas,
+  ] = await Promise.all([
+    obtenerSedes(),
+    obtenerFuncionarios(),
+    obtenerTramites(),
+    obtenerServicios(),
+    obtenerNormas(),
+    obtenerPublicaciones(),
+    obtenerNoticias(),
+    obtenerCampanas(),
+  ]);
 
   const categorias = Object.keys(etiquetasCategoriaTramite) as CategoriaTramite[];
   const tiposNorma = Object.keys(etiquetasTipoNorma) as TipoNorma[];
   const tiposPublicacion = Object.keys(etiquetasTipoPublicacion) as TipoPublicacion[];
+  const categoriasNoticia = Object.keys(etiquetasCategoriaNoticia) as CategoriaNoticia[];
 
   const rutasDinamicas = [
     ...sedes.map((sede) => `/institucional/sedes/${sede.slug}`),
@@ -79,6 +98,9 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     ...tiposNorma.map((tipo) => `/normas/tipo/${tipo}`),
     ...publicaciones.map((publicacion) => `/informes-publicaciones/${publicacion.slug}`),
     ...tiposPublicacion.map((tipo) => `/informes-publicaciones/tipo/${tipo}`),
+    ...noticias.map((noticia) => `/noticias/${noticia.slug}`),
+    ...categoriasNoticia.map((categoria) => `/noticias/categoria/${categoria}`),
+    ...campanas.map((campana) => `/campanas/${campana.slug}`),
   ];
 
   return [...rutasPublicas, ...rutasDinamicas].map((ruta) => ({
