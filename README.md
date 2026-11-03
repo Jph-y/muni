@@ -65,6 +65,8 @@ src/
     contacto/      # formulario de contacto
     normas/        # tarjetas, catálogo y visor PDF de normas
     publicaciones/ # tarjetas y catálogo de informes y publicaciones
+    noticias/      # tarjetas, catálogo paginado y galería de noticias
+    campanas/      # tarjetas y catálogo de campañas
     shared/        # componentes reutilizables
   lib/
     api/           # cliente HTTP, tipos y acceso a contenido
@@ -74,6 +76,9 @@ src/
     tramites/      # filtros de trámites, servicios y FAQ
     normas/        # filtros de normas legales
     publicaciones/ # filtros de informes y publicaciones
+    noticias/      # filtros, paginación y noticias relacionadas
+    campanas/      # estados, filtros y conteos de campañas
+    fechas.ts      # fecha actual de Lima cacheada
     seo/           # metadata y JSON-LD
   mocks/           # datos simulados y handlers MSW
   proxy.ts         # protección de rutas privadas
@@ -83,11 +88,12 @@ tests/
 
 ## Estado
 
-Fases 0 a 4 completadas: setup técnico, sistema de diseño, layout institucional,
+Fases 0 a 5 completadas: setup técnico, sistema de diseño, layout institucional,
 home con datos simulados, páginas de sistema, módulo institucional completo
 (organización, organigrama, autoridades, directorio, sedes y documentos), el
 módulo de trámites y servicios (catálogo, detalle, TUPA, servicios, contacto,
-emergencias y preguntas frecuentes) y el módulo de normas y documentos
-(normas legales, visor PDF, informes y publicaciones).
+emergencias y preguntas frecuentes), el módulo de normas y documentos
+(normas legales, visor PDF, informes y publicaciones) y el módulo de noticias y
+campañas (destacadas, categorías, paginación, galería y eventos vigentes).
 El detalle del avance y las siguientes fases está en
 [`docs/PLAN-FRONTEND.md`](docs/PLAN-FRONTEND.md).

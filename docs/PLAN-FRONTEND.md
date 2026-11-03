@@ -761,22 +761,63 @@ renderizan la UI de «no encontrado» con `noindex`, pero la respuesta HTTP es 2
 (soft 404). No es posible usar `dynamicParams = false` porque es incompatible con
 `cacheComponents`. Los enlaces del sitemap solo incluyen rutas válidas.
 
+### Fase 5 — Noticias y campañas (completada)
+
+**Rutas implementadas (5):**
+
+| Ruta                         | Contenido                                                                 |
+| ---------------------------- | ------------------------------------------------------------------------- |
+| `/noticias`                  | Destacadas, categorías con conteo y archivo paginado (6 por página)       |
+| `/noticias/[slug]`           | Nota completa, galería, etiquetas, fuente y noticias relacionadas         |
+| `/noticias/categoria/[slug]` | Noticias por categoría (6 categorías) con navegación cruzada              |
+| `/campanas`                  | Campañas vigentes, próximas y archivo filtrable por estado y año          |
+| `/campanas/[slug]`           | Detalle con fechas, lugar, horario, responsable y enlace de participación |
+
+**Datos:** se amplió `Noticia` con `galeria`, `etiquetas` y `autor`; `Campana` con
+`lugar`, `horario` y `organiza`, y se agregó `EstadoCampana`. Los seeds incluyen 15
+noticias (9 de 2025 y 6 de 2026) y 9 campañas: 2 vigentes, 1 próxima y 6 finalizadas
+tomando como referencia el 1 de noviembre de 2026. El banner de la home ahora elige
+una campaña realmente vigente en lugar de la más reciente.
+
+**Componentes nuevos:**
+
+- `components/noticias/noticia-card.tsx`, `catalogo-noticias.tsx` (búsqueda,
+  categoría, año y paginación) y `galeria-noticia.tsx`.
+- `components/campanas/campana-card.tsx` y `catalogo-campanas.tsx`.
+- `components/shared/paginacion.tsx` (navegación accesible con `aria-current`).
+
+**Lógica pura:** `src/lib/noticias/filtros.ts` (filtros, años, conteo, paginación y
+relacionadas), `src/lib/campanas/filtros.ts` (estado por fecha, filtros, años y
+conteo) y `src/lib/fechas.ts` (fecha actual de Lima cacheada por horas).
+
+**SEO:** metadata por noticia y campaña, JSON-LD `NewsArticle` y `Event`, y sitemap
+con noticias, categorías y campañas.
+
+**Pruebas:** 27 unitarias nuevas (filtros y paginación de noticias; estados, filtros
+y conteos de campañas) y 6 de integración contra MSW (listados, detalle y 404).
+
+**Nota técnica:** el estado de las campañas se calcula con la fecha de Lima obtenida
+en una función `"use cache"` con `cacheLife("hours")`; por eso `/campanas` y sus
+detalles se revalidan cada hora. Los slugs inválidos mantienen el comportamiento de
+soft 404 descrito en la Fase 4.
+
 ### Verificación ejecutada
 
 | Comando                       | Resultado                                                    |
 | ----------------------------- | ------------------------------------------------------------ |
 | `pnpm typecheck`              | Sin errores                                                  |
 | `pnpm lint`                   | Sin errores                                                  |
-| `pnpm test`                   | 74/74 pruebas aprobadas                                      |
-| `pnpm build`                  | Build correcto con 131 páginas prerenderizadas               |
+| `pnpm test`                   | 107/107 pruebas aprobadas                                    |
+| `pnpm build`                  | Build correcto con 166 páginas prerenderizadas               |
 | `pnpm start` + request a `/`  | HTTP 200 con todas las secciones                             |
 | Request a `/mi-cuenta`        | HTTP 307 → `/login?redirect=/mi-cuenta`                      |
-| Smoke test de 24 rutas nuevas | HTTP 200 en todas; PDFs y `sitemap.xml` sirven correctamente |
+| Smoke test de 29 rutas nuevas | HTTP 200 en todas; PDFs y `sitemap.xml` sirven correctamente |
 
 ### Siguiente fase
 
-Fase 5 — noticias y campañas: `/noticias` con destacados y paginación, detalle con
-galería y relacionadas, `/noticias/categoria/[slug]`, `/campanas` y su detalle.
+Fase 6 — transparencia, participación y programas: portal de transparencia y sus 5
+subsecciones, participación vecinal (presupuesto participativo y CODISE), programas
+sociales con detalle y convocatorias con sus bases.
 
 ---
 
