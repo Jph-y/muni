@@ -1,5 +1,6 @@
 import { http, HttpResponse } from "msw";
 import { campanas } from "@/mocks/data/campanas";
+import { convocatorias } from "@/mocks/data/convocatorias";
 import { puntosEmergencia } from "@/mocks/data/emergencias";
 import {
   areasOrganizacionales,
@@ -10,10 +11,13 @@ import {
 } from "@/mocks/data/institucional";
 import { normas } from "@/mocks/data/normas";
 import { noticias } from "@/mocks/data/noticias";
+import { participacionVecinal } from "@/mocks/data/participacion";
 import { preguntasFrecuentes } from "@/mocks/data/preguntas-frecuentes";
+import { programas } from "@/mocks/data/programas";
 import { publicaciones } from "@/mocks/data/publicaciones";
 import { servicios } from "@/mocks/data/servicios";
 import { tramites } from "@/mocks/data/tramites";
+import { contrataciones, planillas, poi, presupuestos } from "@/mocks/data/transparencia";
 
 const contenido = [
   http.get("*/contenido/noticias", () => HttpResponse.json(noticias)),
@@ -81,6 +85,25 @@ const contenido = [
   http.get("*/contenido/documentos-de-gestion", () =>
     HttpResponse.json(documentosGestion),
   ),
+  http.get("*/contenido/presupuesto", () => HttpResponse.json(presupuestos)),
+  http.get("*/contenido/contrataciones", () => HttpResponse.json(contrataciones)),
+  http.get("*/contenido/poi", () => HttpResponse.json(poi)),
+  http.get("*/contenido/planilla", () => HttpResponse.json(planillas)),
+  http.get("*/contenido/programas", () => HttpResponse.json(programas)),
+  http.get("*/contenido/programas/:slug", ({ params }) => {
+    const programa = programas.find((item) => item.slug === params.slug);
+    return programa
+      ? HttpResponse.json(programa)
+      : HttpResponse.json({ message: "Programa no encontrado" }, { status: 404 });
+  }),
+  http.get("*/contenido/convocatorias", () => HttpResponse.json(convocatorias)),
+  http.get("*/contenido/convocatorias/:slug", ({ params }) => {
+    const convocatoria = convocatorias.find((item) => item.slug === params.slug);
+    return convocatoria
+      ? HttpResponse.json(convocatoria)
+      : HttpResponse.json({ message: "Convocatoria no encontrada" }, { status: 404 });
+  }),
+  http.get("*/contenido/participacion", () => HttpResponse.json(participacionVecinal)),
 ];
 
 export const handlers = [...contenido];

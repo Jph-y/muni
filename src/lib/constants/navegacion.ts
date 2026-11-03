@@ -272,6 +272,8 @@ export const enlacesPieDePagina = [
       { label: "Seguimiento de trámites", href: "/mesa-de-partes/seguimiento" },
       { label: "Libro de reclamaciones", href: "/libro-de-reclamaciones" },
       { label: "Preguntas frecuentes", href: "/preguntas-frecuentes" },
+      { label: "Programas sociales", href: "/programas" },
+      { label: "Participación vecinal", href: "/participacion-vecinal" },
       { label: "Contacto y emergencias", href: "/emergencias" },
     ],
   },
@@ -297,6 +299,7 @@ export const enlacesPieDePagina = [
       { label: "Portal de transparencia", href: "/transparencia" },
       { label: "Presupuesto", href: "/transparencia/presupuesto" },
       { label: "Contrataciones", href: "/transparencia/contrataciones" },
+      { label: "POI", href: "/transparencia/poi" },
       { label: "Planilla", href: "/transparencia/planilla" },
       {
         label: "Acceso a la información",

@@ -7,12 +7,19 @@ import type {
   Campana,
   CategoriaServicio,
   CategoriaTramite,
+  Contratacion,
+  Convocatoria,
   DocumentoGestion,
   Funcionario,
   Norma,
   Noticia,
+  ParticipacionVecinal,
+  Planilla,
+  PoiActividad,
   PreguntaFrecuente,
   PuntoEmergencia,
+  PresupuestoAnual,
+  Programa,
   Publicacion,
   Sede,
   Servicio,
@@ -21,6 +28,7 @@ import type {
   TipoPublicacion,
 } from "@/lib/api/types";
 import { campanas as campanasMock } from "@/mocks/data/campanas";
+import { convocatorias as convocatoriasMock } from "@/mocks/data/convocatorias";
 import { puntosEmergencia as emergenciasMock } from "@/mocks/data/emergencias";
 import {
   areasOrganizacionales as areasMock,
@@ -31,10 +39,18 @@ import {
 } from "@/mocks/data/institucional";
 import { normas as normasMock } from "@/mocks/data/normas";
 import { noticias as noticiasMock } from "@/mocks/data/noticias";
+import { participacionVecinal as participacionMock } from "@/mocks/data/participacion";
 import { preguntasFrecuentes as preguntasMock } from "@/mocks/data/preguntas-frecuentes";
+import { programas as programasMock } from "@/mocks/data/programas";
 import { publicaciones as publicacionesMock } from "@/mocks/data/publicaciones";
 import { servicios as serviciosMock } from "@/mocks/data/servicios";
 import { tramites as tramitesMock } from "@/mocks/data/tramites";
+import {
+  contrataciones as contratacionesMock,
+  planillas as planillasMock,
+  poi as poiMock,
+  presupuestos as presupuestosMock,
+} from "@/mocks/data/transparencia";
 
 function ordenarPorFecha<T extends { fecha: string }>(items: T[]): T[] {
   return [...items].sort((a, b) => b.fecha.localeCompare(a.fecha));
@@ -230,4 +246,72 @@ export async function obtenerDocumentosGestion(): Promise<DocumentoGestion[]> {
     : await apiFetch<DocumentoGestion[]>("/contenido/documentos-de-gestion");
 
   return [...documentos].sort((a, b) => b.anio - a.anio);
+}
+
+export async function obtenerPresupuestos(): Promise<PresupuestoAnual[]> {
+  const presupuestos = USAR_MOCKS
+    ? presupuestosMock
+    : await apiFetch<PresupuestoAnual[]>("/contenido/presupuesto");
+
+  return [...presupuestos].sort((a, b) => b.anio - a.anio);
+}
+
+export async function obtenerContrataciones(): Promise<Contratacion[]> {
+  const contrataciones = USAR_MOCKS
+    ? contratacionesMock
+    : await apiFetch<Contratacion[]>("/contenido/contrataciones");
+
+  return [...contrataciones].sort((a, b) => b.fecha.localeCompare(a.fecha));
+}
+
+export async function obtenerPoi(): Promise<PoiActividad[]> {
+  return USAR_MOCKS ? poiMock : apiFetch<PoiActividad[]>("/contenido/poi");
+}
+
+export async function obtenerPlanillas(): Promise<Planilla[]> {
+  const planillas = USAR_MOCKS
+    ? planillasMock
+    : await apiFetch<Planilla[]>("/contenido/planilla");
+
+  return [...planillas].sort((a, b) => b.anio - a.anio);
+}
+
+export async function obtenerProgramas(): Promise<Programa[]> {
+  const programas = USAR_MOCKS
+    ? programasMock
+    : await apiFetch<Programa[]>("/contenido/programas");
+
+  return [...programas].sort((a, b) => a.nombre.localeCompare(b.nombre, "es"));
+}
+
+export async function obtenerProgramaPorSlug(slug: string): Promise<Programa | null> {
+  if (USAR_MOCKS) {
+    return programasMock.find((programa) => programa.slug === slug) ?? null;
+  }
+
+  return apiFetch<Programa | null>(`/contenido/programas/${slug}`);
+}
+
+export async function obtenerConvocatorias(): Promise<Convocatoria[]> {
+  const convocatorias = USAR_MOCKS
+    ? convocatoriasMock
+    : await apiFetch<Convocatoria[]>("/contenido/convocatorias");
+
+  return [...convocatorias].sort((a, b) => b.publicacion.localeCompare(a.publicacion));
+}
+
+export async function obtenerConvocatoriaPorSlug(
+  slug: string,
+): Promise<Convocatoria | null> {
+  if (USAR_MOCKS) {
+    return convocatoriasMock.find((convocatoria) => convocatoria.slug === slug) ?? null;
+  }
+
+  return apiFetch<Convocatoria | null>(`/contenido/convocatorias/${slug}`);
+}
+
+export async function obtenerParticipacionVecinal(): Promise<ParticipacionVecinal> {
+  return USAR_MOCKS
+    ? participacionMock
+    : apiFetch<ParticipacionVecinal>("/contenido/participacion");
 }

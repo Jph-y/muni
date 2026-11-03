@@ -801,23 +801,69 @@ en una función `"use cache"` con `cacheLife("hours")`; por eso `/campanas` y su
 detalles se revalidan cada hora. Los slugs inválidos mantienen el comportamiento de
 soft 404 descrito en la Fase 4.
 
+### Fase 6 — Transparencia, participación y programas (completada)
+
+**Rutas implementadas (13):**
+
+| Ruta                                               | Contenido                                                                     |
+| -------------------------------------------------- | ----------------------------------------------------------------------------- |
+| `/transparencia`                                   | Panel con cifras clave, accesos a presupuesto, contrataciones, POI y planilla |
+| `/transparencia/presupuesto`                       | Ejecución por rubro, ingresos/gastos y comparativo de los últimos años        |
+| `/transparencia/contrataciones`                    | Catálogo filtrable por tipo, estado, año y texto con monto adjudicado         |
+| `/transparencia/poi`                               | Actividades por eje estratégico con avance físico y presupuesto               |
+| `/transparencia/planilla`                          | Remuneraciones por régimen, resumen de trabajadores y planilla por área       |
+| `/transparencia/acceso-a-la-informacion`           | Procedimiento, plazos, base legal y formato descargable                       |
+| `/participacion-vecinal`                           | Presupuesto participativo, CODISE, audiencias y documentos del proceso        |
+| `/participacion-vecinal/presupuesto-participativo` | Etapas del proceso, proyectos por año, estado y monto priorizado              |
+| `/participacion-vecinal/codisec`                   | Composición del CODISE, funciones y agenda de sesiones                        |
+| `/programas`                                       | Catálogo filtrable por categoría y población objetivo                         |
+| `/programas/[slug]`                                | Objetivos, beneficios, requisitos, cobertura y sede responsable               |
+| `/convocatorias`                                   | Vigentes, próximas y archivo filtrable por tipo, estado y año                 |
+| `/convocatorias/[slug]`                            | Requisitos, funciones, cronograma, ficha, bases y resultados                  |
+
+**Datos:** `PresupuestoAnual`, `Contratacion`, `PoiActividad`, `Planilla`, `Programa`,
+`Convocatoria`, `ParticipacionVecinal` y sus tipos auxiliares. Los seeds incluyen 3
+presupuestos (2024–2026), 12 contrataciones, 12 actividades del POI 2026, 2 planillas,
+8 programas sociales, 8 convocatorias (3 vigentes, 2 próximas y 3 cerradas) y el
+detalle de participación vecinal (5 etapas, 8 proyectos, 12 integrantes del CODISE y
+4 documentos). Se generaron 31 PDFs de demostración en `public/documents/`.
+
+**Componentes nuevos:**
+
+- `components/transparencia/barra-avance.tsx`, `tarjeta-indicador.tsx` y
+  `catalogo-contrataciones.tsx`.
+- `components/participacion/timeline-etapas.tsx`, `programa-card.tsx`,
+  `convocatoria-card.tsx`, `catalogo-programas.tsx` y `catalogo-convocatorias.tsx`.
+
+**Lógica pura:** `src/lib/transparencia/filtros.ts` (porcentajes, presupuesto por año,
+agrupación del POI, filtros y conteos de contrataciones, totales de planilla) y
+`src/lib/participacion/filtros.ts` (estado de convocatorias por fecha, filtros y
+conteos de convocatorias, programas y proyectos).
+
+**SEO:** metadata por programa y convocatoria, sitemap con los detalles dinámicos y
+soft 404 con `noindex` para slugs inexistentes.
+
+**Pruebas:** 45 unitarias nuevas (transparencia, participación, programas,
+convocatorias y validación de los 31 PDFs) y 10 de integración contra MSW (listados,
+detalles y 404).
+
 ### Verificación ejecutada
 
-| Comando                       | Resultado                                                    |
-| ----------------------------- | ------------------------------------------------------------ |
-| `pnpm typecheck`              | Sin errores                                                  |
-| `pnpm lint`                   | Sin errores                                                  |
-| `pnpm test`                   | 107/107 pruebas aprobadas                                    |
-| `pnpm build`                  | Build correcto con 166 páginas prerenderizadas               |
-| `pnpm start` + request a `/`  | HTTP 200 con todas las secciones                             |
-| Request a `/mi-cuenta`        | HTTP 307 → `/login?redirect=/mi-cuenta`                      |
-| Smoke test de 29 rutas nuevas | HTTP 200 en todas; PDFs y `sitemap.xml` sirven correctamente |
+| Comando                          | Resultado                                                  |
+| -------------------------------- | ---------------------------------------------------------- |
+| `pnpm typecheck`                 | Sin errores                                                |
+| `pnpm lint`                      | Sin errores                                                |
+| `pnpm test`                      | 162/162 pruebas aprobadas                                  |
+| `pnpm build`                     | Build correcto con 195 páginas prerrenderizadas            |
+| `pnpm start` + request a `/`     | HTTP 200 con todas las secciones                           |
+| Request a `/mi-cuenta`           | HTTP 307 → `/login?redirect=/mi-cuenta`                    |
+| Smoke test de 13 rutas de Fase 6 | HTTP 200 en todas, incluidos detalles dinámicos y soft 404 |
+| PDFs y `sitemap.xml`             | Sirven correctamente con `application/pdf` y rutas nuevas  |
 
 ### Siguiente fase
 
-Fase 6 — transparencia, participación y programas: portal de transparencia y sus 5
-subsecciones, participación vecinal (presupuesto participativo y CODISE), programas
-sociales con detalle y convocatorias con sus bases.
+Fase 7 — módulos transaccionales y cuenta: pago de tributos, mesa de partes virtual,
+libro de reclamaciones, citas y área privada, con feature flags y MSW.
 
 ---
 

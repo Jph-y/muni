@@ -1,11 +1,19 @@
 import type {
   CategoriaFaq,
   CategoriaNoticia,
+  CategoriaPrograma,
   CategoriaServicio,
   CategoriaTramite,
   EstadoCampana,
+  EstadoContratacion,
+  EstadoConvocatoria,
+  EstadoProyectoParticipativo,
   ModalidadAtencion,
+  ModalidadContratacion,
   NivelOrganizacional,
+  RegimenPlanilla,
+  TipoContratacion,
+  TipoConvocatoria,
   TipoDocumentoGestion,
   TipoNorma,
   TipoPuntoEmergencia,
@@ -171,4 +179,76 @@ export const descripcionesTipoDocumentoGestion: Record<TipoDocumentoGestion, str
   cap: "Cuadro de Asignación de Personal",
   pap: "Presupuesto Analítico de Personal",
   manual: "Manual de procedimientos",
+};
+
+export const etiquetasTipoContratacion: Record<TipoContratacion, string> = {
+  bien: "Bien",
+  servicio: "Servicio",
+  obra: "Obra",
+  consultoria: "Consultoría",
+};
+
+export const etiquetasModalidadContratacion: Record<ModalidadContratacion, string> = {
+  "licitacion-publica": "Licitación pública",
+  "concurso-publico": "Concurso público",
+  "adjudicacion-simplificada": "Adjudicación simplificada",
+  "seleccion-abreviada": "Selección abreviada",
+  "comparacion-de-precios": "Comparación de precios",
+  "contratacion-directa": "Contratación directa",
+};
+
+export const etiquetasEstadoContratacion: Record<EstadoContratacion, string> = {
+  convocado: "Convocado",
+  "buena-pro": "Buena pro",
+  ejecucion: "En ejecución",
+  culminado: "Culminado",
+  desierto: "Desierto",
+};
+
+export const etiquetasRegimenPlanilla: Record<RegimenPlanilla, string> = {
+  "276": "Decreto Legislativo 276",
+  "728": "Régimen laboral 728",
+  cas: "Contrato CAS",
+  locacion: "Locación de servicios",
+};
+
+export const etiquetasCategoriaPrograma: Record<CategoriaPrograma, string> = {
+  alimentacion: "Alimentación",
+  proteccion: "Protección",
+  discapacidad: "Discapacidad",
+  "adulto-mayor": "Adulto mayor",
+  "cultura-y-deporte": "Cultura y deporte",
+  salud: "Salud",
+};
+
+export const descripcionesCategoriaPrograma: Record<CategoriaPrograma, string> = {
+  alimentacion: "Apoyo alimentario y complementación nutricional para familias.",
+  proteccion: "Defensa y acompañamiento de niños, niñas y adolescentes.",
+  discapacidad: "Inclusión, orientación y atención a personas con discapacidad.",
+  "adulto-mayor": "Atención integral y espacios de participación para adultos mayores.",
+  "cultura-y-deporte":
+    "Talleres artísticos, recreativos y escuelas deportivas gratuitas.",
+  salud: "Prevención, tenencia responsable de mascotas y vida saludable.",
+};
+
+export const etiquetasTipoConvocatoria: Record<TipoConvocatoria, string> = {
+  cas: "CAS",
+  practicas: "Prácticas",
+  locacion: "Locación de servicios",
+  consultoria: "Consultoría",
+};
+
+export const etiquetasEstadoConvocatoria: Record<EstadoConvocatoria, string> = {
+  proxima: "Próxima",
+  vigente: "Vigente",
+  cerrada: "Cerrada",
+};
+
+export const etiquetasEstadoProyectoParticipativo: Record<
+  EstadoProyectoParticipativo,
+  string
+> = {
+  priorizado: "Priorizado",
+  "en-ejecucion": "En ejecución",
+  culminado: "Culminado",
 };

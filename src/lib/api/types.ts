@@ -211,3 +211,166 @@ export type PuntoEmergencia = {
   horario?: string;
   nota?: string;
 };
+
+export type TipoContratacion = "bien" | "servicio" | "obra" | "consultoria";
+
+export type ModalidadContratacion =
+  | "licitacion-publica"
+  | "concurso-publico"
+  | "adjudicacion-simplificada"
+  | "seleccion-abreviada"
+  | "comparacion-de-precios"
+  | "contratacion-directa";
+
+export type EstadoContratacion =
+  "convocado" | "buena-pro" | "ejecucion" | "culminado" | "desierto";
+
+export type Contratacion = {
+  id: string;
+  codigo: string;
+  objeto: string;
+  tipo: TipoContratacion;
+  modalidad: ModalidadContratacion;
+  monto: number;
+  fecha: string;
+  estado: EstadoContratacion;
+  proveedor?: string;
+  archivoUrl?: string;
+};
+
+export type RubroPresupuesto = {
+  nombre: string;
+  monto: number;
+  ejecutado: number;
+};
+
+export type PresupuestoAnual = {
+  anio: number;
+  actualizado: string;
+  ingresos: { monto: number; ejecutado: number };
+  gastos: { monto: number; ejecutado: number };
+  rubros: RubroPresupuesto[];
+};
+
+export type PoiActividad = {
+  id: string;
+  anio: number;
+  eje: string;
+  objetivo: string;
+  actividad: string;
+  meta: number;
+  unidad: string;
+  avance: number;
+  presupuesto: number;
+  ejecutado: number;
+};
+
+export type RegimenPlanilla = "276" | "728" | "cas" | "locacion";
+
+export type ResumenPlanilla = {
+  regimen: RegimenPlanilla;
+  cantidad: number;
+  remuneracionPromedio: number;
+};
+
+export type PlanillaArea = {
+  area: string;
+  cantidad: number;
+};
+
+export type Planilla = {
+  anio: number;
+  actualizado: string;
+  resumen: ResumenPlanilla[];
+  areas?: PlanillaArea[];
+};
+
+export type CategoriaPrograma =
+  | "alimentacion"
+  | "proteccion"
+  | "discapacidad"
+  | "adulto-mayor"
+  | "cultura-y-deporte"
+  | "salud";
+
+export type Programa = {
+  id: string;
+  slug: string;
+  nombre: string;
+  categoria: CategoriaPrograma;
+  descripcion: string;
+  dirigidoA: string;
+  objetivos: string[];
+  beneficios: string[];
+  requisitos: string[];
+  horario: string;
+  sede: string;
+  sedeSlug?: string;
+  contacto: string;
+  enLinea?: boolean;
+};
+
+export type TipoConvocatoria = "cas" | "practicas" | "locacion" | "consultoria";
+
+export type EstadoConvocatoria = "proxima" | "vigente" | "cerrada";
+
+export type Convocatoria = {
+  id: string;
+  slug: string;
+  titulo: string;
+  tipo: TipoConvocatoria;
+  area: string;
+  descripcion: string;
+  requisitos: string[];
+  funciones: string[];
+  vacantes: number;
+  remuneracion?: number;
+  publicacion: string;
+  cierre: string;
+  evaluacion?: string;
+  resultado?: string;
+  basesUrl: string;
+  resultadoUrl?: string;
+};
+
+export type EtapaPresupuestoParticipativo = {
+  id: string;
+  titulo: string;
+  descripcion: string;
+  fecha: string;
+};
+
+export type EstadoProyectoParticipativo = "priorizado" | "en-ejecucion" | "culminado";
+
+export type ProyectoPresupuestoParticipativo = {
+  id: string;
+  nombre: string;
+  anio: number;
+  zona: string;
+  monto: number;
+  estado: EstadoProyectoParticipativo;
+};
+
+export type MiembroCodisec = {
+  id: string;
+  nombre: string;
+  organizacion: string;
+  cargo: string;
+  tipo: "municipal" | "vecinal" | "social";
+};
+
+export type DocumentoParticipacion = {
+  id: string;
+  titulo: string;
+  descripcion: string;
+  fecha: string;
+  archivoUrl: string;
+};
+
+export type ParticipacionVecinal = {
+  etapas: EtapaPresupuestoParticipativo[];
+  proyectos: ProyectoPresupuestoParticipativo[];
+  miembrosCodisec: MiembroCodisec[];
+  funcionesCodisec: string[];
+  documentos: DocumentoParticipacion[];
+};

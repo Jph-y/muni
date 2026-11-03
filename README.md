@@ -67,6 +67,8 @@ src/
     publicaciones/ # tarjetas y catálogo de informes y publicaciones
     noticias/      # tarjetas, catálogo paginado y galería de noticias
     campanas/      # tarjetas y catálogo de campañas
+    transparencia/ # indicadores, barras de avance y catálogo de contrataciones
+    participacion/ # etapas, programas y catálogo de convocatorias
     shared/        # componentes reutilizables
   lib/
     api/           # cliente HTTP, tipos y acceso a contenido
@@ -78,6 +80,8 @@ src/
     publicaciones/ # filtros de informes y publicaciones
     noticias/      # filtros, paginación y noticias relacionadas
     campanas/      # estados, filtros y conteos de campañas
+    transparencia/ # presupuesto, POI, contrataciones y planilla
+    participacion/ # convocatorias, programas y proyectos participativos
     fechas.ts      # fecha actual de Lima cacheada
     seo/           # metadata y JSON-LD
   mocks/           # datos simulados y handlers MSW
@@ -88,12 +92,15 @@ tests/
 
 ## Estado
 
-Fases 0 a 5 completadas: setup técnico, sistema de diseño, layout institucional,
+Fases 0 a 6 completadas: setup técnico, sistema de diseño, layout institucional,
 home con datos simulados, páginas de sistema, módulo institucional completo
 (organización, organigrama, autoridades, directorio, sedes y documentos), el
 módulo de trámites y servicios (catálogo, detalle, TUPA, servicios, contacto,
 emergencias y preguntas frecuentes), el módulo de normas y documentos
-(normas legales, visor PDF, informes y publicaciones) y el módulo de noticias y
-campañas (destacadas, categorías, paginación, galería y eventos vigentes).
+(normas legales, visor PDF, informes y publicaciones), el módulo de noticias y
+campañas (destacadas, categorías, paginación, galería y eventos vigentes) y el
+módulo de transparencia y participación (presupuesto, contrataciones, POI,
+planilla, acceso a la información, presupuesto participativo, CODISE, programas
+sociales y convocatorias).
 El detalle del avance y las siguientes fases está en
 [`docs/PLAN-FRONTEND.md`](docs/PLAN-FRONTEND.md).

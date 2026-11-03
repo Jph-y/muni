@@ -1,9 +1,11 @@
 import type { MetadataRoute } from "next";
 import {
   obtenerCampanas,
+  obtenerConvocatorias,
   obtenerFuncionarios,
   obtenerNormas,
   obtenerNoticias,
+  obtenerProgramas,
   obtenerPublicaciones,
   obtenerSedes,
   obtenerServicios,
@@ -70,6 +72,8 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     publicaciones,
     noticias,
     campanas,
+    programas,
+    convocatorias,
   ] = await Promise.all([
     obtenerSedes(),
     obtenerFuncionarios(),
@@ -79,6 +83,8 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     obtenerPublicaciones(),
     obtenerNoticias(),
     obtenerCampanas(),
+    obtenerProgramas(),
+    obtenerConvocatorias(),
   ]);
 
   const categorias = Object.keys(etiquetasCategoriaTramite) as CategoriaTramite[];
@@ -101,6 +107,8 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     ...noticias.map((noticia) => `/noticias/${noticia.slug}`),
     ...categoriasNoticia.map((categoria) => `/noticias/categoria/${categoria}`),
     ...campanas.map((campana) => `/campanas/${campana.slug}`),
+    ...programas.map((programa) => `/programas/${programa.slug}`),
+    ...convocatorias.map((convocatoria) => `/convocatorias/${convocatoria.slug}`),
   ];
 
   return [...rutasPublicas, ...rutasDinamicas].map((ruta) => ({
